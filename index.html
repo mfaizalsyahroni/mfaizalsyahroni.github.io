@@ -34,6 +34,23 @@
       width: 100%;
     }
 
+    /* === FIX: Navbar mobile menu background agar terbaca === */
+    @media (max-width: 991px) {
+      #navMenu {
+        background: rgba(30, 30, 30, 0.97);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-top: 0.5rem;
+      }
+      #navMenu .nav-link {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      #navMenu .nav-link:last-child {
+        border-bottom: none;
+      }
+    }
+
     /* Foto kotak 1:1 */
     .photo-box {
       width: 100%;
@@ -41,36 +58,130 @@
       object-fit: cover;
     }
 
-
-    /* Jajal */
-    .hero-name {
-      font-weight: 800;
-
-      /* TEXT TRANSPARAN */
-      color: transparent;
-
-      /* BIAR TEMBUS KE BACKGROUND */
-      -webkit-background-clip: text;
-      background-clip: text;
-
-      /* OUTLINE HURUF */
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
-
-      transition: 0.4s ease;
+    /* === FIX: Hero background-attachment fixed tidak bekerja di mobile === */
+    #hero {
+      background-attachment: scroll !important; /* fixed bikin bug di iOS */
     }
 
-    /* HOVER EFFECT */
+    @media (min-width: 992px) {
+      #hero {
+        background-attachment: fixed !important;
+      }
+    }
+
+    /* Hero name */
+    .hero-name {
+      font-weight: 800;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
+      transition: 0.4s ease;
+      /* FIX: ukuran font terlalu besar di HP */
+      font-size: clamp(1.6rem, 5vw, 3.5rem);
+      line-height: 1.2;
+    }
+
     #hero:hover .hero-name {
-      /* glow muncul */
       text-shadow:
         0 0 5px rgba(255, 255, 255, 0.8),
         0 0 10px rgba(255, 255, 255, 0.6),
         0 0 20px rgba(255, 255, 255, 0.4);
-
       transform: scale(1.05);
-
-      /* outline lebih terang */
       -webkit-text-stroke: 1.5px #fff;
+    }
+
+    /* FIX: typed text ukuran responsif */
+    #typed-text {
+      font-size: clamp(1rem, 4vw, 1.75rem) !important;
+    }
+
+    /* FIX: About section - tabel info jangan overflow di HP */
+    .about-table td {
+      padding: 0.25rem 0.4rem;
+      font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+      word-break: break-word;
+    }
+
+    /* FIX: Email di tabel tidak overflow */
+    .email-cell {
+      font-size: clamp(0.65rem, 2vw, 0.8rem) !important;
+      word-break: break-all !important;
+      max-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    /* FIX: Skill badges responsif */
+    .skill-badges img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* FIX: Project images height konsisten */
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    @media (min-width: 768px) {
+      .project-img {
+        height: 240px;
+      }
+    }
+
+    /* FIX: Course card image height */
+    .course-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* FIX: Social icons ukuran konsisten di mobile */
+    .social-icon {
+      width: 38px !important;
+      height: 38px !important;
+      font-size: 1rem !important;
+      flex-shrink: 0;
+    }
+
+    /* FIX: padding section lebih kecil di mobile */
+    @media (max-width: 575px) {
+      .py-5 {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+      }
+      .p-4 {
+        padding: 1.25rem !important;
+      }
+      .p-md-5 {
+        padding: 1.25rem !important;
+      }
+    }
+
+    /* FIX: About info box - foto dan tabel stacking di mobile */
+    @media (max-width: 400px) {
+      .info-photo-col {
+        width: 100% !important;
+        max-width: 160px;
+        margin: 0 auto 1rem;
+      }
+      .info-table-col {
+        width: 100% !important;
+      }
+    }
+
+    /* FIX: style="height:280 px" ada spasi, override dengan CSS */
+    .card-img-top {
+      height: 200px !important;
+      object-fit: cover;
+    }
+
+    @media (min-width: 768px) {
+      .card-img-top {
+        height: 220px !important;
+      }
     }
   </style>
 </head>
@@ -80,20 +191,21 @@
   <!-- ======= Navbar ======= -->
   <nav id="mainNav" class="navbar navbar-expand-lg fixed-top py-3" style="background:transparent">
     <div class="container">
-      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navMenu">
+      <!-- FIX: Brand/logo di kiri agar tidak kosong di mobile -->
+      <a class="navbar-brand text-white fw-bold" href="#hero"></a>
+
+      <button class="navbar-toggler border-0 shadow-none ms-auto" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-list text-white fs-2"></i>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navMenu">
         <ul class="navbar-nav gap-lg-3">
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#hero">Home</a></li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#about">About Me</a></li>
-          <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#projects">Project</a>
-          </li>
+          <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#projects">Project</a></li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#courses">Course</a></li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase"
-              href="https://drive.google.com/file/d/1ZY2xmc2YH_SC1HYg4sCrn4kwKQiGzOxy/view" target="_blank">Download
-              CV</a></li>
+              href="https://drive.google.com/file/d/1ZY2xmc2YH_SC1HYg4sCrn4kwKQiGzOxy/view" target="_blank">Download CV</a></li>
         </ul>
       </div>
     </div>
@@ -101,12 +213,12 @@
 
   <!-- ======= Hero ======= -->
   <section id="hero" class="d-flex align-items-center justify-content-center text-center text-white min-vh-100"
-    style="background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('assets/img/pict_picture2.jpeg') center/cover no-repeat fixed">
-    <div>
-      <h1 class="display-3 fw-bold hero-name">
+    style="background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('assets/img/pict_picture2.jpeg') center/cover no-repeat scroll">
+    <div class="px-3">
+      <h1 class="hero-name display-3 fw-bold">
         Muhammad Faizal Syahroni
       </h1>
-      <p class="fs-3 fw-semibold mt-2" id="typed-text" style="color:#ffffff;
+      <p id="typed-text" class="fw-semibold mt-2 fs-3" style="color:#ffffff;
           text-shadow:0 0 10px rgba(255,255,255,0.8),
                       0 0 20px rgba(200,200,200,0.5),
                       0 0 30px rgba(255,255,255,0.2);">
@@ -119,50 +231,50 @@
   <section id="about" class="py-5 bg-secondary bg-opacity-25">
     <div class="container">
       <div class="bg-white shadow p-4 p-md-5 rounded-3">
-        <div class="row g-5">
+        <div class="row g-4 g-md-5">
 
           <!-- Left -->
-          <div class="col-md-6">
+          <div class="col-12 col-md-6">
+            <!-- FIX: row wrap otomatis di HP kecil -->
             <div class="row g-3 align-items-start mb-4">
 
               <!-- Foto -->
-              <div class="col-5">
+              <div class="col-5 col-sm-4 info-photo-col">
                 <img src="assets/img/PICT1.jpeg" class="photo-box rounded-3 shadow-sm w-100" alt="Faizal" />
               </div>
 
               <!-- Info -->
-              <div class="col-7">
-                <table class="table table-borderless table-sm mb-0 small align-middle">
+              <div class="col-7 col-sm-8 info-table-col">
+                <table class="table table-borderless table-sm mb-0 about-table align-middle">
                   <tbody>
                     <tr>
-                      <td class="fw-bold" style="width:15px;">Name</td>
-                      <td style="width:10px;">:</td>
+                      <td class="fw-bold text-nowrap">Name</td>
+                      <td class="text-nowrap px-1">:</td>
                       <td>Muhammad Faizal Syahroni</td>
                     </tr>
                     <tr>
-                      <td class="fw-bold">College</td>
-                      <td>:</td>
+                      <td class="fw-bold text-nowrap">College</td>
+                      <td class="text-nowrap px-1">:</td>
                       <td>Mercu Buana University</td>
                     </tr>
                     <tr>
-                      <td class="fw-bold">Interest</td>
-                      <td>:</td>
+                      <td class="fw-bold text-nowrap">Interest</td>
+                      <td class="text-nowrap px-1">:</td>
                       <td>Full Stack Developer</td>
                     </tr>
                     <tr>
-                      <td class="fw-bold">Email</td>
-                      <td>:</td>
-                      <td class="small" style="max-width:200px; word-break:keep-all;">
+                      <td class="fw-bold text-nowrap">Email</td>
+                      <td class="text-nowrap px-1">:</td>
+                      <td class="email-cell">
                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammadfaizalsyahroni@gmail.com&su=Interview%20Invitation&body=Dear%20Muhammad%20Faizal%2C%0A%0AWe%20are%20interested%20in%20your%20technical%20skills%20and%20personal%20branding%20in%20the%20programming%20field.%0A%0AWe%20would%20like%20to%20invite%20you%20to%20an%20interview%20for%20a%20potential%20opportunity.%0A%0APlease%20let%20us%20know%20your%20availability.%0A%0AThank%20you.%0A%0ABest%20regards%2C%0AHR%20Team"
                           target="_blank" class="text-dark text-decoration-none">
-                          muhammadfaizalsyahroni@gmail.com
+                          muhammadfaizalsyahroni<wbr>@gmail.com
                         </a>
-                      </td>
                       </td>
                     </tr>
                     <tr>
-                      <td class="fw-bold">Phone</td>
-                      <td>:</td>
+                      <td class="fw-bold text-nowrap">Phone</td>
+                      <td class="text-nowrap px-1">:</td>
                       <td>087896276397</td>
                     </tr>
                   </tbody>
@@ -172,84 +284,69 @@
 
             <!-- Skill -->
             <p class="fw-bold mb-3">Skill</p>
-
-            <!-- Skill Icons -->
             <div class="d-flex justify-content-center gap-4 mb-3 flex-wrap">
-
-              <div class="text-start">
+              <div class="text-start w-100">
 
                 <!-- Backend -->
                 <p class="text-secondary mb-2">
                   <i class="bi bi-hdd-network me-2"></i>Back end
                 </p>
-                <div class="d-flex flex-wrap justify-content-center fw-bold gap-2 mb-3">
-                  <img
-                    src="https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/CodeIgniter-EF4223?style=flat-square&logo=codeigniter&logoColor=white" />
-                  <img src="https://img.shields.io/badge/Lumen-E74430?style=flat-square&logo=lumen&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/Symfony-000000?style=flat-square&logo=symfony&logoColor=white" />
-                  <img src="https://img.shields.io/badge/Yii2-00BFFF?style=flat-square&logo=yii&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/Magento-EE672F?style=flat-square&logo=magento&logoColor=white" />
+                <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
+                  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel"/>
+                  <img src="https://img.shields.io/badge/CodeIgniter-EF4223?style=flat-square&logo=codeigniter&logoColor=white" alt="CodeIgniter"/>
+                  <img src="https://img.shields.io/badge/Lumen-E74430?style=flat-square&logo=lumen&logoColor=white" alt="Lumen"/>
+                  <img src="https://img.shields.io/badge/Symfony-000000?style=flat-square&logo=symfony&logoColor=white" alt="Symfony"/>
+                  <img src="https://img.shields.io/badge/Yii2-00BFFF?style=flat-square&logo=yii&logoColor=white" alt="Yii2"/>
+                  <img src="https://img.shields.io/badge/Magento-EE672F?style=flat-square&logo=magento&logoColor=white" alt="Magento"/>
                 </div>
 
                 <!-- Frontend -->
                 <p class="text-secondary mb-2">
                   <i class="bi bi-window me-2"></i>Frontend
                 </p>
-                <div class="d-flex flex-wrap justify-content-center fw-bold gap-2 mb-3">
-                  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
-                  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" />
-                  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
+                <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
+                  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white" alt="Vue"/>
+                  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap"/>
+                  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JS"/>
+                  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"/>
+                  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"/>
+                  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind"/>
                 </div>
 
                 <!-- Database & Language -->
                 <p class="text-secondary mb-2">
                   <i class="bi bi-database me-2"></i>Languages & Database
                 </p>
-                <div class="d-flex flex-wrap justify-content-center fw-bold gap-2 mb-3">
-                  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" />
-                  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" />
+                <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
+                  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP"/>
+                  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" alt="NodeJS"/>
+                  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL"/>
+                  <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
                 </div>
 
                 <!-- Tools -->
                 <p class="text-secondary mb-2">
                   <i class="bi bi-tools me-2"></i>Tools
                 </p>
-                <div class="d-flex flex-wrap justify-content-center fw-bold gap-2 mb-3">
-                  <img src="https://img.shields.io/badge/PHPUnit-366488?style=flat-square&logo=php&logoColor=white" />
-                  <img src="https://img.shields.io/badge/PHPSpec-4A4A55?style=flat-square&logo=php&logoColor=white" />
-                  <img
-                    src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" />
+                <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
+                  <img src="https://img.shields.io/badge/PHPUnit-366488?style=flat-square&logo=php&logoColor=white" alt="PHPUnit"/>
+                  <img src="https://img.shields.io/badge/PHPSpec-4A4A55?style=flat-square&logo=php&logoColor=white" alt="PHPSpec"/>
+                  <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" alt="Postman"/>
                 </div>
 
               </div>
-
             </div>
           </div>
 
           <!-- Right -->
-          <div class="col-md-6">
+          <div class="col-12 col-md-6">
             <h5 class="fw-bold pb-2 mb-4 border-bottom border-3 border-secondary">
               About Me
             </h5>
 
             <p>
               I am a fresh graduate in Informatics Engineering with over seven years of intensive self-driven learning
-              in
-              software development, primarily through hands-on practice, and have built several real-world projects
+              in software development, primarily through hands-on practice, and have built several real-world projects
               including web-based systems and portfolio applications.
             </p>
 
@@ -265,21 +362,19 @@
             </p>
 
             <!-- Social -->
-            <div class="d-flex gap-3 mt-4">
+            <div class="d-flex flex-wrap gap-3 mt-4">
               <a href="https://www.linkedin.com/in/muhammadfaizalsyahroni-113b54248/"
-                class="d-inline-flex align-items-center justify-content-center rounded-circle border border-2 border-primary text-dark text-decoration-none fs-5"
+                class="social-icon d-inline-flex align-items-center justify-content-center rounded-circle border border-2 border-primary text-dark text-decoration-none"
                 style="width:42px;height:42px">
                 <i class="bi bi-linkedin"></i>
               </a>
-
               <a href="https://github.com/mfaizalsyahroni"
-                class="d-inline-flex align-items-center justify-content-center rounded-circle border border-2 border-dark text-dark text-decoration-none fs-5"
+                class="social-icon d-inline-flex align-items-center justify-content-center rounded-circle border border-2 border-dark text-dark text-decoration-none"
                 style="width:42px;height:42px">
                 <i class="bi bi-github"></i>
               </a>
-
               <a href="https://www.instagram.com/myname_issall/"
-                class="d-inline-flex align-items-center justify-content-center rounded-circle border border-2 border-danger text-dark text-decoration-none fs-5"
+                class="social-icon d-inline-flex align-items-center justify-content-center rounded-circle border border-2 border-danger text-dark text-decoration-none"
                 style="width:42px;height:42px">
                 <i class="bi bi-instagram"></i>
               </a>
@@ -300,27 +395,33 @@
         <div class="mx-auto bg-danger rounded" style="width:40px;height:5px"></div>
       </div>
       <div class="d-flex justify-content-center mb-5">
-        <div class="bg-white shadow-sm rounded p-4 text-center" style="max-width:400px">
+        <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:400px">
           <i class="bi bi-card-checklist display-4 text-primary mb-3 d-block"></i>
           <h5 class="fw-bold text-uppercase">Project</h5>
           <p class="text-muted small mb-0">The project I have created includes a portfolio website, an open table
             reservation system for a bar and billiards in Tangerang, and an attendance project for a company.</p>
         </div>
       </div>
+      <!-- FIX: col-12 col-md-6 agar di HP full width, di tablet 2 kolom -->
       <div class="row g-4">
-        <div class="col-md-6"><img src="assets/img/project/pendekar/index.png" class="img-fluid rounded shadow-sm w-100"
-            alt="Pendekar" />
+        <div class="col-12 col-md-6">
+          <img src="assets/img/project/pendekar/index.png" class="project-img rounded shadow-sm" alt="Pendekar"/>
         </div>
-        <div class="col-md-6"><img src="assets/img/project/salbilliard/index.png"
-            class="img-fluid rounded shadow-sm w-100" alt="SalBilliard" /></div>
-        <div class="col-md-6"><img src="assets/img/project/hris/index.png" class="img-fluid rounded shadow-sm w-100"
-            alt="HRIS" /></div>
-        <div class="col-md-6"><img src="assets/img/project/salmovie/index.png" class="img-fluid rounded shadow-sm w-100"
-            alt="movie" /></div>
-        <div class="col-md-6"><img src="assets/img/project/nusa_weather/weather.png"
-            class="img-fluid rounded shadow-sm w-100" alt="weather" /></div>
-        <div class="col-md-6"><img src="assets/img/absensi2.png" class="img-fluid rounded shadow-sm w-100"
-            alt="Absensi 2" /></div>
+        <div class="col-12 col-md-6">
+          <img src="assets/img/project/salbilliard/index.png" class="project-img rounded shadow-sm" alt="SalBilliard"/>
+        </div>
+        <div class="col-12 col-md-6">
+          <img src="assets/img/project/hris/index.png" class="project-img rounded shadow-sm" alt="HRIS"/>
+        </div>
+        <div class="col-12 col-md-6">
+          <img src="assets/img/project/salmovie/index.png" class="project-img rounded shadow-sm" alt="Movie"/>
+        </div>
+        <div class="col-12 col-md-6">
+          <img src="assets/img/project/nusa_weather/weather.png" class="project-img rounded shadow-sm" alt="Weather"/>
+        </div>
+        <div class="col-12 col-md-6">
+          <img src="assets/img/absensi2.png" class="project-img rounded shadow-sm" alt="Absensi"/>
+        </div>
       </div>
     </div>
   </section>
@@ -328,31 +429,22 @@
   <!-- ======= Courses ======= -->
   <section id="courses" class="py-5" style="background-color: #f0f4f8;">
     <div class="container">
-
       <div class="d-flex justify-content-center mb-5">
-        <div class="bg-white shadow-sm rounded p-4 text-center" style="max-width:420px">
-
+        <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:420px">
           <i class="bi bi-mortarboard-fill display-4 text-danger mb-3 d-block"></i>
-
           <h3 class="fw-bold text-uppercase mb-2">Course</h3>
-
-          <p class="text-muted small mb-3">
-            Certification obtained upon completion.
-          </p>
-
+          <p class="text-muted small mb-3">Certification obtained upon completion.</p>
           <div class="mx-auto bg-danger rounded" style="width:40px;height:4px"></div>
-
         </div>
       </div>
-      
-      <div class="row g-4">
-      <!-- ======= MAX! SIZE CARD ======= --> 
 
-        <div class="col-md-4">
+      <!-- FIX: col-12 col-sm-6 col-md-4 agar HP 1 kolom, tablet 2 kolom, desktop 3 kolom -->
+      <div class="row g-4">
+
+        <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/ORACLE.jpg" target="_blank">
-              <img src="assets/img/ORACLE.jpg" class="card-img-top object-fit-cover" style="height:280 px"
-                alt="Oracle" />
+              <img src="assets/img/ORACLE.jpg" class="card-img-top course-img" alt="Oracle"/>
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Database Programming with SQL</h6>
@@ -362,10 +454,10 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/PHKM.jpg" target="_blank">
-              <img src="assets/img/PHKM.jpg" class="card-img-top object-fit-cover" style="height:280 px" alt="PHKM" />
+              <img src="assets/img/PHKM.jpg" class="card-img-top course-img" alt="PHKM"/>
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Pameran Hasil Karya Mahasiswa</h6>
@@ -375,10 +467,10 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/LIA.jpg" target="_blank">
-              <img src="assets/img/LIA.jpg" class="card-img-top object-fit-cover" style="height:280 px" alt="LIA" />
+              <img src="assets/img/LIA.jpg" class="card-img-top course-img" alt="LIA"/>
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Institution Bahasa LIA</h6>
@@ -388,11 +480,10 @@
           </div>
         </div>
 
-        
-        <div class="col-md-4">
+        <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/certification/PHP Course Udemy.jpg" target="_blank">
-              <img src="assets/img/certification/PHP Course Udemy.jpg" class="card-img-top object-fit-cover" style="height:280 px" alt="LIA" />
+              <img src="assets/img/certification/PHP Course Udemy.jpg" class="card-img-top course-img" alt="PHP Udemy"/>
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">PHP Udemy Course</h6>
@@ -401,26 +492,25 @@
             </div>
           </div>
         </div>
-        
-        <div class="col-md-4">
+
+        <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
+            <!-- FIX: hapus spasi di URL "GMF.png\n              " -->
             <a href="assets/img/certification/GMF.png" target="_blank">
-              <img src="assets/img/certification/GMF.png
-              " class="card-img-top object-fit-cover" style="height:280 px" alt="LIA" />
+              <img src="assets/img/certification/GMF.png" class="card-img-top course-img" alt="GMF"/>
             </a>
             <div class="card-body">
-              <h6 class="fw-bold mb-1">Institution Bahasa LIA</h6>
+              <h6 class="fw-bold mb-1">Magang PT GMF AeroAsia</h6>
               <small class="text-danger fw-semibold">PT GMF AeroAsia TBK</small>
               <small class="text-muted"> / 27 Des 2024</small>
             </div>
           </div>
         </div>
 
-        
-        <div class="col-md-4">
+        <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/LIA.jpg" target="_blank">
-              <img src="assets/img/LIA.jpg" class="card-img-top object-fit-cover" style="height:280 px" alt="LIA" />
+              <img src="assets/img/LIA.jpg" class="card-img-top course-img" alt="LIA"/>
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Institution Bahasa LIA</h6>
@@ -442,12 +532,11 @@
   <!-- Back to top -->
   <a href="#" id="backTop"
     class="d-none d-flex align-items-center justify-content-center position-fixed bottom-0 end-0 m-3 bg-secondary bg-gradient text-white rounded-circle text-decoration-none"
-    style="width:50px;height:50px">
+    style="width:50px;height:50px;z-index:1000">
     <i class="bi bi-arrow-up-short fs-4"></i>
   </a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
   <script>
     // Navbar: transparan di hero, bg-secondary saat scroll
     const nav = document.getElementById('mainNav');
@@ -455,9 +544,8 @@
 
     window.addEventListener('scroll', () => {
       const heroHeight = hero.offsetHeight;
-
       if (window.scrollY >= heroHeight - 80) {
-        nav.style.background = 'rgba(108, 117, 125, 0.9)';
+        nav.style.background = 'rgba(108, 117, 125, 0.95)';
       } else {
         nav.style.background = 'transparent';
       }
@@ -482,35 +570,6 @@
       setTimeout(type, dir > 0 ? 110 : 60);
     }
     type();
-
-    // Radar chart
-    new Chart(document.getElementById('radarChart'), {
-      type: 'radar',
-      data: {
-        labels: ['PHP', 'Framework', 'JavaScript', 'Database'],
-        datasets: [{
-          label: 'Skill',
-          data: [100, 100, 90, 100],
-          backgroundColor: 'rgba(144,12,63,0.2)',
-          borderColor: 'rgba(144,12,63,0.9)',
-          borderWidth: 2,
-          pointBackgroundColor: 'rgba(144,12,63,1)',
-          pointRadius: 5
-        }]
-      },
-      options: {
-        scales: {
-          r: {
-            min: 0, max: 100,
-            ticks: { stepSize: 25, font: { size: 10 } },
-            pointLabels: { font: { size: 13, weight: 'bold' } },
-            grid: { color: 'rgba(0,0,0,.1)' },
-            angleLines: { color: 'rgba(0,0,0,.15)' }
-          }
-        },
-        plugins: { legend: { display: false } }
-      }
-    });
   </script>
 </body>
 
