@@ -132,21 +132,21 @@
     }
 
     /* FIX: Project images height konsisten */
-    .project-img {
+    /* .project-img {
       width: 100%;
       aspect-ratio: 4 / 3;
-      /* lebih tinggi dari 16/10 */
+      
       object-fit: cover;
       object-position: top;
-      /* tampilkan bagian atas gambar */
-    }
+      
+    } */
 
     /* FIX: Course card image height */
-    .course-img {
+    /* .course-img {
       width: 100%;
       height: 200px;
       object-fit: cover;
-    }
+    } */
 
     /* FIX: Social icons ukuran konsisten di mobile */
     .social-icon {
@@ -195,16 +195,23 @@
     .course-img {
       width: 100%;
       aspect-ratio: 3 / 2;
-      /* landscape, cocok untuk sertifikat */
       object-fit: cover;
       object-position: top;
+    }
+
+    @media (max-width: 767px) {
+      #wakatime iframe {
+        width: 150% !important;
+        transform: translateX(-15%) !important;
+        height: 300px !important;
+      }
     }
   </style>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#mainNav" style="scroll-behavior:smooth">
 
-  <!-- ======= Navbar ======= -->
+  <!--  Navbar  -->
   <nav id="mainNav" class="navbar navbar-expand-lg fixed-top py-3" style="background:transparent">
     <div class="container">
       <!-- FIX: Brand/logo di kiri agar tidak kosong di mobile -->
@@ -229,7 +236,7 @@
     </div>
   </nav>
 
-  <!-- ======= Hero ======= -->
+  <!--  Hero  -->
   <section id="hero" class="d-flex align-items-center justify-content-center text-center text-white min-vh-100"
     style="background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('assets/img/pict_picture2.jpeg') center/cover no-repeat scroll">
     <div class="px-3">
@@ -245,8 +252,8 @@
     </div>
   </section>
 
-  <!-- ======= About ======= -->
-  <section id="about" class="py-5 bg-secondary bg-opacity-25">
+  <!--  About bg-secondary bg-opacity-25  -->
+  <section id="about" class="py-5" style="background-color: #f0f4f8;">
     <div class="container">
       <div class="bg-white shadow p-4 p-md-5 rounded-3">
         <div class="row g-4 g-md-5">
@@ -419,6 +426,7 @@
               developer and contribute to impactful software projects.
             </p>
 
+
             <!-- Social -->
             <div class="d-flex flex-wrap gap-3 mt-4">
               <a href="https://www.linkedin.com/in/muhammadfaizalsyahroni-113b54248/"
@@ -444,7 +452,7 @@
     </div>
   </section>
 
-  <!-- ======= Projects ======= -->
+  <!--  Projects  -->
   <section id="projects" class="py-5" style="background-color: #f0f4f8;">
     <div class="container">
       <div class="text-center mb-5">
@@ -484,7 +492,33 @@
     </div>
   </section>
 
-  <!-- ======= Courses ======= -->
+
+
+  <!--  WakaTime  -->
+  <section id="wakatime" class="py-5" style="background-color: #f0f4f8;">
+    <div class="container">
+
+      <div class="d-flex justify-content-center mb-5">
+        <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:420px">
+          <i class="bi bi-activity display-4 text-success mb-3 d-block"></i>
+          <h3 class="fw-bold text-uppercase mb-2">Coding Activity</h3>
+          <p class="text-muted small mb-3">My coding activity tracked by WakaTime.</p>
+          <div class="mx-auto bg-danger rounded" style="width:40px;height:4px"></div>
+        </div>
+      </div>
+
+      <div class="bg-white shadow rounded-3 p-4" style="overflow:hidden">
+        <iframe
+          src="https://wakatime.com/share/@c2143b72-7539-485e-ba68-62cf6f894bf5/d14dac7c-8eec-4507-9cc0-037ce3f83c20.svg"
+          frameborder="0" scrolling="no" style="width:130%; height:450px; border:none; display:block;
+             transform:translateX(-11%); transform-origin:left top">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!--  Courses  -->
   <section id="courses" class="py-5" style="background-color: #f0f4f8;">
     <div class="container">
       <div class="d-flex justify-content-center mb-5">
@@ -582,7 +616,7 @@
     </div>
   </section>
 
-  <!-- ======= Footer ======= -->
+  <!--  Footer  -->
   <footer class="bg-secondary bg-opacity-75 text-white text-center py-4">
     <p class="mb-0 small">&copy; 2026 <strong>Muhammad Faizal Syahroni</strong></p>
   </footer>
