@@ -42,10 +42,12 @@
         padding: 1rem;
         margin-top: 0.5rem;
       }
+
       #navMenu .nav-link {
         padding: 0.5rem 0;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
+
       #navMenu .nav-link:last-child {
         border-bottom: none;
       }
@@ -60,7 +62,8 @@
 
     /* === FIX: Hero background-attachment fixed tidak bekerja di mobile === */
     #hero {
-      background-attachment: scroll !important; /* fixed bikin bug di iOS */
+      background-attachment: scroll !important;
+      /* fixed bikin bug di iOS */
     }
 
     @media (min-width: 992px) {
@@ -103,6 +106,17 @@
       word-break: break-word;
     }
 
+    .about-table .col-label {
+      width: 60px;
+      min-width: 60px;
+      white-space: nowrap;
+    }
+
+    .about-table .col-sep {
+      width: 16px;
+      min-width: 16px;
+    }
+
     /* FIX: Email di tabel tidak overflow */
     .email-cell {
       font-size: clamp(0.65rem, 2vw, 0.8rem) !important;
@@ -120,15 +134,11 @@
     /* FIX: Project images height konsisten */
     .project-img {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 4 / 3;
+      /* lebih tinggi dari 16/10 */
       object-fit: cover;
       object-position: top;
-    }
-
-    @media (min-width: 768px) {
-      .project-img {
-        height: 240px;
-      }
+      /* tampilkan bagian atas gambar */
     }
 
     /* FIX: Course card image height */
@@ -146,15 +156,24 @@
       flex-shrink: 0;
     }
 
+    .project-img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      /* atur rasio sesuai selera, misal 4/3 atau 16/9 */
+      object-fit: cover;
+    }
+
     /* FIX: padding section lebih kecil di mobile */
     @media (max-width: 575px) {
       .py-5 {
         padding-top: 2.5rem !important;
         padding-bottom: 2.5rem !important;
       }
+
       .p-4 {
         padding: 1.25rem !important;
       }
+
       .p-md-5 {
         padding: 1.25rem !important;
       }
@@ -167,21 +186,18 @@
         max-width: 160px;
         margin: 0 auto 1rem;
       }
+
       .info-table-col {
         width: 100% !important;
       }
     }
 
-    /* FIX: style="height:280 px" ada spasi, override dengan CSS */
-    .card-img-top {
-      height: 200px !important;
+    .course-img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      /* landscape, cocok untuk sertifikat */
       object-fit: cover;
-    }
-
-    @media (min-width: 768px) {
-      .card-img-top {
-        height: 220px !important;
-      }
+      object-position: top;
     }
   </style>
 </head>
@@ -202,10 +218,12 @@
         <ul class="navbar-nav gap-lg-3">
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#hero">Home</a></li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#about">About Me</a></li>
-          <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#projects">Project</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#projects">Project</a>
+          </li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#courses">Course</a></li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase"
-              href="https://drive.google.com/file/d/1ZY2xmc2YH_SC1HYg4sCrn4kwKQiGzOxy/view" target="_blank">Download CV</a></li>
+              href="https://drive.google.com/file/d/1ZY2xmc2YH_SC1HYg4sCrn4kwKQiGzOxy/view" target="_blank">Download
+              CV</a></li>
         </ul>
       </div>
     </div>
@@ -245,37 +263,53 @@
 
               <!-- Info -->
               <div class="col-7 col-sm-8 info-table-col">
-                <table class="table table-borderless table-sm mb-0 about-table align-middle">
+                <table class="table table-borderless table-sm mb-0 align-middle"
+                  style="table-layout:fixed; width:100%;">
+                  <colgroup>
+                    <col style="width:55px">
+                    <col style="width:12px">
+                    <col>
+                  </colgroup>
                   <tbody>
                     <tr>
-                      <td class="fw-bold text-nowrap">Name</td>
-                      <td class="text-nowrap px-1">:</td>
-                      <td>Muhammad Faizal Syahroni</td>
+                      <td class="fw-bold" style="white-space:nowrap; font-size:clamp(0.7rem,2.5vw,0.875rem)">Name</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem)">:</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem); word-break:break-word">Muhammad Faizal Syahroni
+                      </td>
                     </tr>
                     <tr>
-                      <td class="fw-bold text-nowrap">College</td>
-                      <td class="text-nowrap px-1">:</td>
-                      <td>Mercu Buana University</td>
+                      <td class="fw-bold" style="white-space:nowrap; font-size:clamp(0.7rem,2.5vw,0.875rem)">College
+                      </td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem)">:</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem); word-break:break-word">Mercu Buana University
+                      </td>
                     </tr>
                     <tr>
-                      <td class="fw-bold text-nowrap">Interest</td>
-                      <td class="text-nowrap px-1">:</td>
-                      <td>Full Stack Developer</td>
+                      <td class="fw-bold" style="white-space:nowrap; font-size:clamp(0.7rem,2.5vw,0.875rem)">Interest
+                      </td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem)">:</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem); word-break:break-word">Full Stack Developer
+                      </td>
                     </tr>
                     <tr>
-                      <td class="fw-bold text-nowrap">Email</td>
-                      <td class="text-nowrap px-1">:</td>
-                      <td class="email-cell">
+                      <td class="fw-bold" style="white-space:nowrap; font-size:clamp(0.7rem,2.5vw,0.875rem)">Email</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem)">:</td>
+                      <td style="word-break:break-all; overflow-wrap:break-word; font-size:clamp(0.6rem,1.8vw,0.75rem)">
                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=muhammadfaizalsyahroni@gmail.com&su=Interview%20Invitation&body=Dear%20Muhammad%20Faizal%2C%0A%0AWe%20are%20interested%20in%20your%20technical%20skills%20and%20personal%20branding%20in%20the%20programming%20field.%0A%0AWe%20would%20like%20to%20invite%20you%20to%20an%20interview%20for%20a%20potential%20opportunity.%0A%0APlease%20let%20us%20know%20your%20availability.%0A%0AThank%20you.%0A%0ABest%20regards%2C%0AHR%20Team"
                           target="_blank" class="text-dark text-decoration-none">
-                          muhammadfaizalsyahroni<wbr>@gmail.com
+                          muhammadfaizalsyahroni@gmail.com
                         </a>
                       </td>
                     </tr>
                     <tr>
-                      <td class="fw-bold text-nowrap">Phone</td>
-                      <td class="text-nowrap px-1">:</td>
-                      <td>087896276397</td>
+                      <td class="fw-bold" style="white-space:nowrap; font-size:clamp(0.7rem,2.5vw,0.875rem)">Phone</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem)">:</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem); word-break:break-word">
+                        <a href="https://wa.me/6287896276397?text=Dear%20Muhammad%20Faizal%2C%0A%0AWe%20are%20interested%20in%20your%20technical%20skills%20and%20personal%20branding%20in%20the%20programming%20field.%0A%0AWe%20would%20like%20to%20invite%20you%20to%20an%20interview%20for%20a%20potential%20opportunity.%0A%0APlease%20let%20us%20know%20your%20availability.%0A%0AThank%20you.%0A%0ABest%20regards%2C%0AHR%20Team"
+                          target="_blank" class="text-dark text-decoration-none">
+                          087896276397
+                        </a>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -292,12 +326,19 @@
                   <i class="bi bi-hdd-network me-2"></i>Back end
                 </p>
                 <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
-                  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel"/>
-                  <img src="https://img.shields.io/badge/CodeIgniter-EF4223?style=flat-square&logo=codeigniter&logoColor=white" alt="CodeIgniter"/>
-                  <img src="https://img.shields.io/badge/Lumen-E74430?style=flat-square&logo=lumen&logoColor=white" alt="Lumen"/>
-                  <img src="https://img.shields.io/badge/Symfony-000000?style=flat-square&logo=symfony&logoColor=white" alt="Symfony"/>
-                  <img src="https://img.shields.io/badge/Yii2-00BFFF?style=flat-square&logo=yii&logoColor=white" alt="Yii2"/>
-                  <img src="https://img.shields.io/badge/Magento-EE672F?style=flat-square&logo=magento&logoColor=white" alt="Magento"/>
+                  <img src="https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white"
+                    alt="Laravel" />
+                  <img
+                    src="https://img.shields.io/badge/CodeIgniter-EF4223?style=flat-square&logo=codeigniter&logoColor=white"
+                    alt="CodeIgniter" />
+                  <img src="https://img.shields.io/badge/Lumen-E74430?style=flat-square&logo=lumen&logoColor=white"
+                    alt="Lumen" />
+                  <img src="https://img.shields.io/badge/Symfony-000000?style=flat-square&logo=symfony&logoColor=white"
+                    alt="Symfony" />
+                  <img src="https://img.shields.io/badge/Yii2-00BFFF?style=flat-square&logo=yii&logoColor=white"
+                    alt="Yii2" />
+                  <img src="https://img.shields.io/badge/Magento-EE672F?style=flat-square&logo=magento&logoColor=white"
+                    alt="Magento" />
                 </div>
 
                 <!-- Frontend -->
@@ -305,12 +346,21 @@
                   <i class="bi bi-window me-2"></i>Frontend
                 </p>
                 <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
-                  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white" alt="Vue"/>
-                  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap"/>
-                  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JS"/>
-                  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5"/>
-                  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3"/>
-                  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind"/>
+                  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white"
+                    alt="Vue" />
+                  <img
+                    src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white"
+                    alt="Bootstrap" />
+                  <img
+                    src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"
+                    alt="JS" />
+                  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"
+                    alt="HTML5" />
+                  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"
+                    alt="CSS3" />
+                  <img
+                    src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"
+                    alt="Tailwind" />
                 </div>
 
                 <!-- Database & Language -->
@@ -318,10 +368,15 @@
                   <i class="bi bi-database me-2"></i>Languages & Database
                 </p>
                 <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
-                  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP"/>
-                  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white" alt="NodeJS"/>
-                  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" alt="MySQL"/>
-                  <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
+                  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white"
+                    alt="PHP" />
+                  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white"
+                    alt="NodeJS" />
+                  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"
+                    alt="MySQL" />
+                  <img
+                    src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white"
+                    alt="PostgreSQL" />
                 </div>
 
                 <!-- Tools -->
@@ -329,9 +384,12 @@
                   <i class="bi bi-tools me-2"></i>Tools
                 </p>
                 <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
-                  <img src="https://img.shields.io/badge/PHPUnit-366488?style=flat-square&logo=php&logoColor=white" alt="PHPUnit"/>
-                  <img src="https://img.shields.io/badge/PHPSpec-4A4A55?style=flat-square&logo=php&logoColor=white" alt="PHPSpec"/>
-                  <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white" alt="Postman"/>
+                  <img src="https://img.shields.io/badge/PHPUnit-366488?style=flat-square&logo=php&logoColor=white"
+                    alt="PHPUnit" />
+                  <img src="https://img.shields.io/badge/PHPSpec-4A4A55?style=flat-square&logo=php&logoColor=white"
+                    alt="PHPSpec" />
+                  <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat-square&logo=postman&logoColor=white"
+                    alt="Postman" />
                 </div>
 
               </div>
@@ -404,23 +462,23 @@
       </div>
       <!-- FIX: col-12 col-md-6 agar di HP full width, di tablet 2 kolom -->
       <div class="row g-4">
-        <div class="col-12 col-md-6">
-          <img src="assets/img/project/pendekar/index.png" class="project-img rounded shadow-sm" alt="Pendekar"/>
+        <div class="col-18 col-md-6">
+          <img src="assets/img/project/pendekar/index.png" class="project-img rounded shadow-sm" alt="Pendekar" />
         </div>
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/salbilliard/index.png" class="project-img rounded shadow-sm" alt="SalBilliard"/>
+          <img src="assets/img/project/salbilliard/index.png" class="project-img rounded shadow-sm" alt="SalBilliard" />
         </div>
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/hris/index.png" class="project-img rounded shadow-sm" alt="HRIS"/>
+          <img src="assets/img/project/hris/index.png" class="project-img rounded shadow-sm" alt="HRIS" />
         </div>
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/salmovie/index.png" class="project-img rounded shadow-sm" alt="Movie"/>
+          <img src="assets/img/project/salmovie/index.png" class="project-img rounded shadow-sm" alt="Movie" />
         </div>
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/nusa_weather/weather.png" class="project-img rounded shadow-sm" alt="Weather"/>
+          <img src="assets/img/project/nusa_weather/weather.png" class="project-img rounded shadow-sm" alt="Weather" />
         </div>
         <div class="col-12 col-md-6">
-          <img src="assets/img/absensi2.png" class="project-img rounded shadow-sm" alt="Absensi"/>
+          <img src="assets/img/absensi2.png" class="project-img rounded shadow-sm" alt="Absensi" />
         </div>
       </div>
     </div>
@@ -444,7 +502,7 @@
         <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/ORACLE.jpg" target="_blank">
-              <img src="assets/img/ORACLE.jpg" class="card-img-top course-img" alt="Oracle"/>
+              <img src="assets/img/ORACLE.jpg" class="course-img" alt="Oracle" />
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Database Programming with SQL</h6>
@@ -457,7 +515,7 @@
         <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/PHKM.jpg" target="_blank">
-              <img src="assets/img/PHKM.jpg" class="card-img-top course-img" alt="PHKM"/>
+              <img src="assets/img/PHKM.jpg" class="course-img" alt="PHKM" />
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Pameran Hasil Karya Mahasiswa</h6>
@@ -470,7 +528,7 @@
         <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/LIA.jpg" target="_blank">
-              <img src="assets/img/LIA.jpg" class="card-img-top course-img" alt="LIA"/>
+              <img src="assets/img/LIA.jpg" class="course-img" alt="LIA" />
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Institution Bahasa LIA</h6>
@@ -483,7 +541,7 @@
         <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/certification/PHP Course Udemy.jpg" target="_blank">
-              <img src="assets/img/certification/PHP Course Udemy.jpg" class="card-img-top course-img" alt="PHP Udemy"/>
+              <img src="assets/img/certification/PHP Course Udemy.jpg" class="course-img" alt="PHP Udemy" />
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">PHP Udemy Course</h6>
@@ -497,7 +555,7 @@
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <!-- FIX: hapus spasi di URL "GMF.png\n              " -->
             <a href="assets/img/certification/GMF.png" target="_blank">
-              <img src="assets/img/certification/GMF.png" class="card-img-top course-img" alt="GMF"/>
+              <img src="assets/img/certification/GMF.png" class="course-img" alt="GMF" />
             </a>
             <div class="card-body">
               <h6 class="fw-bold mb-1">Magang PT GMF AeroAsia</h6>
@@ -509,13 +567,13 @@
 
         <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
-            <a href="assets/img/LIA.jpg" target="_blank">
-              <img src="assets/img/LIA.jpg" class="card-img-top course-img" alt="LIA"/>
+            <a href="assets/img/certification/Redis Course Udemy.jpg" target="_blank">
+              <img src="assets/img/certification/Redis Course Udemy.jpg" class="course-img" alt="Redis Udemy" />
             </a>
             <div class="card-body">
-              <h6 class="fw-bold mb-1">Institution Bahasa LIA</h6>
-              <small class="text-danger fw-semibold">Universitas Mercu Buana</small>
-              <small class="text-muted"> / 10 Aug 2022</small>
+              <h6 class="fw-bold mb-1">Redis Udemy Course</h6>
+              <small class="text-danger fw-semibold">Udemy</small>
+              <small class="text-muted"> / 4 Des 2024</small>
             </div>
           </div>
         </div>
