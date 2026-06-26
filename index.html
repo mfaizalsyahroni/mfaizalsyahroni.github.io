@@ -63,7 +63,6 @@
     /* === FIX: Hero background-attachment fixed tidak bekerja di mobile === */
     #hero {
       background-attachment: scroll !important;
-      /* fixed bikin bug di iOS */
     }
 
     @media (min-width: 992px) {
@@ -80,7 +79,6 @@
       background-clip: text;
       -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
       transition: 0.4s ease;
-      /* FIX: ukuran font terlalu besar di HP */
       font-size: clamp(1.6rem, 5vw, 3.5rem);
       line-height: 1.2;
     }
@@ -94,12 +92,10 @@
       -webkit-text-stroke: 1.5px #fff;
     }
 
-    /* FIX: typed text ukuran responsif */
     #typed-text {
       font-size: clamp(1rem, 4vw, 1.75rem) !important;
     }
 
-    /* FIX: About section - tabel info jangan overflow di HP */
     .about-table td {
       padding: 0.25rem 0.4rem;
       font-size: clamp(0.75rem, 2.5vw, 0.875rem);
@@ -117,7 +113,6 @@
       min-width: 16px;
     }
 
-    /* FIX: Email di tabel tidak overflow */
     .email-cell {
       font-size: clamp(0.65rem, 2vw, 0.8rem) !important;
       word-break: break-all !important;
@@ -125,42 +120,37 @@
       overflow-wrap: break-word;
     }
 
-    /* FIX: Skill badges responsif */
     .skill-badges img {
       max-width: 100%;
       height: auto;
     }
 
-    /* FIX: Project images height konsisten */
-    /* .project-img {
+    .course-img {
       width: 100%;
-      aspect-ratio: 4 / 3;
-      
+      aspect-ratio: 3 / 2;
       object-fit: cover;
       object-position: top;
-      
-    } */
-
-    /* FIX: Course card image height */
-    /* .course-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    } */
-
-    /* FIX: Social icons ukuran konsisten di mobile */
-    .social-icon {
-      width: 38px !important;
-      height: 38px !important;
-      font-size: 1rem !important;
-      flex-shrink: 0;
     }
 
+    /* PROJECT IMAGE */
     .project-img {
       width: 100%;
       aspect-ratio: 16 / 10;
-      /* atur rasio sesuai selera, misal 4/3 atau 16/9 */
       object-fit: cover;
+      object-position: top;
+      cursor: pointer;
+      transition: transform .3s ease;
+    }
+
+    .project-img:hover {
+      transform: scale(1.02);
+    }
+
+    .project-img.zoomed {
+      transform: scale(1.8);
+      cursor: zoom-out !important;
+      z-index: 999;
+      position: relative;
     }
 
     /* FIX: padding section lebih kecil di mobile */
@@ -179,7 +169,6 @@
       }
     }
 
-    /* FIX: About info box - foto dan tabel stacking di mobile */
     @media (max-width: 400px) {
       .info-photo-col {
         width: 100% !important;
@@ -192,11 +181,11 @@
       }
     }
 
-    .course-img {
-      width: 100%;
-      aspect-ratio: 3 / 2;
-      object-fit: cover;
-      object-position: top;
+    .social-icon {
+      width: 38px !important;
+      height: 38px !important;
+      font-size: 1rem !important;
+      flex-shrink: 0;
     }
 
     @media (max-width: 767px) {
@@ -206,6 +195,45 @@
         height: 300px !important;
       }
     }
+
+    /* =============================================
+       CAROUSEL — DOTS & PANAH HIDDEN BY DEFAULT
+       Muncul hanya setelah gambar di-klik
+       ============================================= */
+
+    .carousel-hover-reveal {
+      position: relative;
+    }
+
+    /* Sembunyikan indikator (dots) */
+    .carousel-hover-reveal .carousel-indicators {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      position: relative;
+      bottom: 0;
+      margin-bottom: 0;
+    }
+
+    /* Sembunyikan tombol panah */
+    .carousel-hover-reveal .carousel-control-prev,
+    .carousel-hover-reveal .carousel-control-next {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    /* Saat class "controls-visible" aktif (ditambah via JS setelah klik) */
+    .carousel-hover-reveal.controls-visible .carousel-indicators {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .carousel-hover-reveal.controls-visible .carousel-control-prev,
+    .carousel-hover-reveal.controls-visible .carousel-control-next {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
 </head>
 
@@ -214,7 +242,6 @@
   <!--  Navbar  -->
   <nav id="mainNav" class="navbar navbar-expand-lg fixed-top py-3" style="background:transparent">
     <div class="container">
-      <!-- FIX: Brand/logo di kiri agar tidak kosong di mobile -->
       <a class="navbar-brand text-white fw-bold" href="#hero"></a>
 
       <button class="navbar-toggler border-0 shadow-none ms-auto" type="button" data-bs-toggle="collapse"
@@ -252,7 +279,7 @@
     </div>
   </section>
 
-  <!--  About bg-secondary bg-opacity-25  -->
+  <!--  About  -->
   <section id="about" class="py-5" style="background-color: #f0f4f8;">
     <div class="container">
       <div class="bg-white shadow p-4 p-md-5 rounded-3">
@@ -260,7 +287,6 @@
 
           <!-- Left -->
           <div class="col-12 col-md-6">
-            <!-- FIX: row wrap otomatis di HP kecil -->
             <div class="row g-3 align-items-start mb-4">
 
               <!-- Foto -->
@@ -426,7 +452,6 @@
               developer and contribute to impactful software projects.
             </p>
 
-
             <!-- Social -->
             <div class="d-flex flex-wrap gap-3 mt-4">
               <a href="https://www.linkedin.com/in/muhammadfaizalsyahroni-113b54248/"
@@ -460,6 +485,8 @@
         <p class="text-muted">Project application for a web-based CRUD (Create, Read, Update, Delete) system.</p>
         <div class="mx-auto bg-danger rounded" style="width:40px;height:5px"></div>
       </div>
+
+      <!-- Carousel Project Description -->
       <div class="d-flex justify-content-center mb-5">
         <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:400px">
           <i class="bi bi-card-checklist display-4 text-primary mb-3 d-block"></i>
@@ -468,31 +495,304 @@
             reservation system for a bar and billiards in Tangerang, and an attendance project for a company.</p>
         </div>
       </div>
-      <!-- FIX: col-12 col-md-6 agar di HP full width, di tablet 2 kolom -->
+
+      <!-- Row Project Images with Carousel -->
       <div class="row g-4">
-        <div class="col-18 col-md-6">
-          <img src="assets/img/project/pendekar/index.png" class="project-img rounded shadow-sm" alt="Pendekar" />
-        </div>
+
+        <!-- Project 1: Pendekar (1 Image) -->
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/salbilliard/index.png" class="project-img rounded shadow-sm" alt="SalBilliard" />
+          <div id="carouselProject1" class="carousel slide" data-bs-interval="false">
+
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="0" class="active bg-secondary"
+                aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="1" class="active bg-secondary
+                class=" bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="2"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="3"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="4"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="5"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="6"
+                class="bg-secondary"></button>
+            </div>
+
+
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <img src="assets/img/project/pendekar/index.png" class="project-img d-block w-100" alt="Pendekar 1">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/chart_order.png" class="project-img d-block w-100"
+                  alt="Pendekar 2">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/min_order.png" class="project-img d-block w-100" alt="Pendekar 3">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/payment_QR.png" class="project-img d-block w-100"
+                  alt="Pendekar 4">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/result_table.png" class="project-img d-block w-100"
+                  alt="Pendekar 5">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/report_generate.png" class="project-img d-block w-100"
+                  alt="Pendekar 6">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/daily_visitor_report.png" class="project-img d-block w-100"
+                  alt="Pendekar 7">
+              </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject1" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject1" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
+
+        <!-- Project 2: SalBilliard (1 Image) -->
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/hris/index.png" class="project-img rounded shadow-sm" alt="HRIS" />
+          <div id="carouselProject2" class="carousel slide" data-bs-interval="false">
+
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselProject2" data-bs-slide-to="0" class="active bg-secondary"
+                aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselProject2" data-bs-slide-to="1"
+                class="bg-secondary"></button>
+            </div>
+
+
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <img src="assets/img/project/salbilliard/index.png" class="project-img d-block w-100"
+                  alt="salbilliard 1">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/salbilliard/table_checkin_timeslot_form.png"
+                  class="project-img d-block w-100" alt="salbilliard 2">
+              </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
+
+        <!-- Project 3: HRIS (1 Image) -->
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/salmovie/index.png" class="project-img rounded shadow-sm" alt="Movie" />
+          <div id="carouselProject3" class="carousel slide carousel-hover-reveal" data-bs-interval="false">
+
+            <!-- Dots: 10 dots (index 0-9), hapus yang ke-11 karena path-nya rusak -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="0" class="active bg-secondary"
+                aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="1" class="active bg-secondary
+                class=" bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="2"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="3"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="4"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="5"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="6"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="7"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="8"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="9"
+                class="bg-secondary"></button>
+            </div>
+
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <img src="assets/img/project/hris/index.png" class="project-img d-block w-100" alt="hris 1">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/form_session_admin.png" class="project-img d-block w-100"
+                  alt="hris 2">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/register_new_worker.png"
+                  class="project-img d-block w-100" alt="hris 3">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/profile_new_employee.png"
+                  class="project-img d-block w-100" alt="hris 4">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/set_salary_grade.png" class="project-img d-block w-100"
+                  alt="hris 5">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/all_employees.png" class="project-img d-block w-100"
+                  alt="hris 6">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/attendance/form_attendance.png" class="project-img d-block w-100"
+                  alt="hris 7">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/attendance/attendance_fiture.png" class="project-img d-block w-100"
+                  alt="hris 8">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/attendance/clock_in.png" class="project-img d-block w-100"
+                  alt="hris 9">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/attendance/clock_out.png" class="project-img d-block w-100"
+                  alt="hris 10">
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+
+          </div>
         </div>
+
+        <!-- Project 4: GMF (1 Image) -->
         <div class="col-12 col-md-6">
-          <img src="assets/img/project/nusa_weather/weather.png" class="project-img rounded shadow-sm" alt="Weather" />
+          <div id="carouselProject4" class="carousel slide carousel-hover-reveal" data-bs-interval="false">
+
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="0" class="active bg-secondary"
+                aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="1"
+                class="bg-secondary"></button>
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="2"
+                class="bg-secondary"></button>
+            </div>
+
+            <!-- Images -->
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <img src="assets/img/project/gmf/gmf (2).png" class="project-img d-block w-100" alt="">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/gmf/gmf (3).png" class="project-img d-block w-100" alt="">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/gmf/gmf(4).png" class="project-img d-block w-100" alt="">
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+
+          </div>
         </div>
+
+        <!-- Project 5: Weather (1 Image) -->
         <div class="col-12 col-md-6">
-          <img src="assets/img/absensi2.png" class="project-img rounded shadow-sm" alt="Absensi" />
+          <div id="carouselProject5" class="carousel slide" data-bs-interval="false">
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <img src="assets/img/project/nusa_weather/weather.png" class="project-img d-block w-100" alt="Weather">
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Project 6: SalMovie (1 Images - With Controls) -->
+        <div class="col-12 col-md-6">
+          <div id="carouselProject5" class="carousel slide" data-bs-interval="false">
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <img src="assets/img/project/salmovie/index.png" class="project-img d-block w-100" alt="Weather">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Project 7: Kopmer (3 Images - With Controls) -->
+        <div class="col-12 col-md-6">
+          <div id="carouselProject7" class="carousel slide carousel-hover-reveal" data-bs-interval="false">
+
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="0" class="active bg-secondary"
+                aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="1"
+                class="bg-secondary"></button>
+                <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="2"
+                  class="bg-secondary"></button>
+                <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="3"
+                  class="bg-secondary"></button>
+                <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="4"
+                  class="bg-secondary"></button>
+              </div>
+
+            <!-- Images -->
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <img src="assets/img/project/kopmer/kopmer_landingpage.png" class="project-img d-block w-100" alt="">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/kopmer/kopmer_coffee.png" class="project-img d-block w-100" alt="">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/kopmer/kopmer_adventure.png" class="project-img d-block w-100" alt="">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/kopmer/kopmer_nature.png" class="project-img d-block w-100" alt="">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/kopmer/kopmer_booking.png" class="project-img d-block w-100" alt="">
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject7" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject7" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
-
-
 
   <!--  WakaTime  -->
   <section id="wakatime" class="py-5" style="background-color: #f0f4f8;">
@@ -511,7 +811,7 @@
         <iframe
           src="https://wakatime.com/share/@c2143b72-7539-485e-ba68-62cf6f894bf5/d14dac7c-8eec-4507-9cc0-037ce3f83c20.svg"
           frameborder="0" scrolling="no" style="width:130%; height:450px; border:none; display:block;
-             transform:translateX(-11%); transform-origin:left top">
+            transform:translateX(-11%); transform-origin:left top">
         </iframe>
       </div>
 
@@ -530,7 +830,6 @@
         </div>
       </div>
 
-      <!-- FIX: col-12 col-sm-6 col-md-4 agar HP 1 kolom, tablet 2 kolom, desktop 3 kolom -->
       <div class="row g-4">
 
         <div class="col-12 col-sm-6 col-md-4">
@@ -587,7 +886,6 @@
 
         <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
-            <!-- FIX: hapus spasi di URL "GMF.png\n              " -->
             <a href="assets/img/certification/GMF.png" target="_blank">
               <img src="assets/img/certification/GMF.png" class="course-img" alt="GMF" />
             </a>
@@ -616,6 +914,38 @@
     </div>
   </section>
 
+<!--  Graduate  -->
+<section id="graduate" class="py-5" style="background-color: #f0f4f8;">
+  <div class="container">
+    <div class="d-flex justify-content-center mb-5">
+      <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:420px">
+        <i class="bi bi-mortarboard-fill display-4 text-danger mb-3 d-block"></i>
+        <h3 class="fw-bold text-uppercase mb-2">Graduate</h3>
+        <p class="text-muted small mb-3">Certification of Graduation</p>
+        <div class="mx-auto bg-danger rounded" style="width:40px;height:4px"></div>
+      </div>
+    </div>
+
+    <!-- Card SKL - ditengah -->
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="card border-0 shadow-sm h-100 overflow-hidden">
+          <a href="assets/img/certification/" target="_blank">
+            <img src="assets/img/certification/SKL.pdf" class="course-img" alt="SKL"
+              onerror="this.onerror=null; this.src='assets/img/certification/skl-thumb.jpg';" />
+          </a>
+          <div class="card-body">
+            <h6 class="fw-bold mb-1">Surat Keterangan Lulus</h6>
+            <small class="text-danger fw-semibold">Mercu Buana University</small>
+            <small class="text-muted"> / 2025</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
   <!--  Footer  -->
   <footer class="bg-secondary bg-opacity-75 text-white text-center py-4">
     <p class="mb-0 small">&copy; 2026 <strong>Muhammad Faizal Syahroni</strong></p>
@@ -628,9 +958,43 @@
     <i class="bi bi-arrow-up-short fs-4"></i>
   </a>
 
+  <!-- Gallery Modal -->
+  <div class="modal fade" id="galleryModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-dark border-0">
+
+        <!-- Header -->
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Body -->
+        <div class="modal-body d-flex justify-content-center align-items-center position-relative">
+
+          <!-- PREV -->
+          <button class="btn btn-light position-absolute start-0 ms-3 z-3" id="prevBtn">❮</button>
+
+          <!-- IMAGE -->
+          <img id="galleryImage" src="" class="img-fluid rounded shadow" style="
+            max-height: 90vh;
+            cursor: zoom-in;
+            transition: transform .3s;
+          ">
+
+          <!-- NEXT -->
+          <button class="btn btn-light position-absolute end-0 me-3 z-3" id="nextBtn">❯</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Navbar: transparan di hero, bg-secondary saat scroll
+    // =========================================
+    // Navbar Scroll Effect
+    // =========================================
     const nav = document.getElementById('mainNav');
     const hero = document.getElementById('hero');
 
@@ -643,26 +1007,165 @@
       }
     });
 
-    // Back to top
+    // =========================================
+    // Back To Top
+    // =========================================
     const btn = document.getElementById('backTop');
+
     window.addEventListener('scroll', () => {
       btn.classList.toggle('d-none', scrollY < 300);
       btn.classList.toggle('d-flex', scrollY >= 300);
     });
 
-    // Typed effect
+    // =========================================
+    // Typed Text
+    // =========================================
     const el = document.getElementById('typed-text');
     const txt = 'Fullstack Developer';
-    let i = 0, dir = 1;
+
+    let i = 0;
+    let dir = 1;
+
     function type() {
       el.textContent = txt.slice(0, i) + '|';
       i += dir;
-      if (i > txt.length) { dir = -1; setTimeout(type, 1800); return; }
-      if (i < 0) { dir = 1; i = 0; setTimeout(type, 400); return; }
+
+      if (i > txt.length) {
+        dir = -1;
+        setTimeout(type, 1800);
+        return;
+      }
+
+      if (i < 0) {
+        dir = 1;
+        i = 0;
+        setTimeout(type, 400);
+        return;
+      }
+
       setTimeout(type, dir > 0 ? 110 : 60);
     }
+
     type();
+
+    // =========================================
+    // CAROUSEL CLICK-TO-REVEAL CONTROLS
+    // Dots & panah muncul setelah gambar diklik,
+    // hilang otomatis setelah 4 detik tidak ada aktivitas
+    // =========================================
+    const carouselHover = document.querySelector('.carousel-hover-reveal');
+
+    if (carouselHover) {
+      let hideTimeout;
+
+      function showControls() {
+        carouselHover.classList.add('controls-visible');
+        clearTimeout(hideTimeout);
+        // Auto-hide setelah 4 detik tanpa aktivitas
+        hideTimeout = setTimeout(() => {
+          carouselHover.classList.remove('controls-visible');
+        }, 4000);
+      }
+
+      // Klik pada gambar carousel → tampilkan controls
+      carouselHover.querySelectorAll('.project-img').forEach(img => {
+        img.addEventListener('click', (e) => {
+          // Cegah klik gambar membuka gallery modal jika controls belum aktif
+          if (!carouselHover.classList.contains('controls-visible')) {
+            e.stopPropagation(); // Cegah bubble ke gallery modal
+            showControls();
+          }
+          // Jika sudah visible, biarkan klik normal (buka gallery)
+        });
+      });
+
+      // Klik tombol panah → perpanjang waktu tampil
+      carouselHover.querySelectorAll('.carousel-control-prev, .carousel-control-next').forEach(btn => {
+        btn.addEventListener('click', showControls);
+      });
+
+      // Klik dots indicator → perpanjang waktu tampil
+      carouselHover.querySelectorAll('.carousel-indicators button').forEach(dot => {
+        dot.addEventListener('click', showControls);
+      });
+
+      // Touch support (HP) — sentuh area carousel
+      carouselHover.addEventListener('touchstart', showControls, { passive: true });
+    }
+
+    // =========================================
+    // GALLERY MODAL
+    // =========================================
+    const images = document.querySelectorAll('.project-img');
+
+    const galleryModal = new bootstrap.Modal(
+      document.getElementById('galleryModal')
+    );
+
+    const galleryImage = document.getElementById('galleryImage');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+
+    // Open modal on image click
+    images.forEach((img, index) => {
+      img.style.cursor = 'pointer';
+
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        galleryImage.src = img.src;
+        galleryModal.show();
+      });
+    });
+
+    // Next image
+    nextBtn.addEventListener('click', () => {
+      currentIndex++;
+      if (currentIndex >= images.length) currentIndex = 0;
+      galleryImage.src = images[currentIndex].src;
+    });
+
+    // Prev image
+    prevBtn.addEventListener('click', () => {
+      currentIndex--;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      galleryImage.src = images[currentIndex].src;
+    });
+
+    // Keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('galleryModal').classList.contains('show')) return;
+      if (e.key === 'ArrowRight') nextBtn.click();
+      if (e.key === 'ArrowLeft') prevBtn.click();
+      if (e.key === 'Escape') galleryModal.hide();
+    });
+
+    // Zoom image
+    let zoomed = false;
+
+    galleryImage.addEventListener('click', () => {
+      zoomed = !zoomed;
+      if (zoomed) {
+        galleryImage.style.transform = 'scale(1.8)';
+        galleryImage.style.cursor = 'zoom-out';
+      } else {
+        galleryImage.style.transform = 'scale(1)';
+        galleryImage.style.cursor = 'zoom-in';
+      }
+    });
+
+    function resetZoom() {
+      zoomed = false;
+      galleryImage.style.transform = 'scale(1)';
+      galleryImage.style.cursor = 'zoom-in';
+    }
+
+    nextBtn.addEventListener('click', resetZoom);
+    prevBtn.addEventListener('click', resetZoom);
+
   </script>
+
 </body>
 
 </html>
