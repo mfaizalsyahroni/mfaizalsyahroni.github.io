@@ -14,24 +14,33 @@
     }
 
     /* Hover underline putih */
+    /* Styling dasar untuk nav-link */
     #mainNav .nav-link {
       position: relative;
-      padding-bottom: 4px;
+      padding-bottom: 5px;
+      transition: color 0.3s ease;
     }
 
+    /* Membuat garis bawah yang tidak terlihat (scale-x: 0) */
     #mainNav .nav-link::after {
       content: '';
       position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
       bottom: 0;
       left: 0;
-      width: 0;
-      height: 2px;
-      background: #fff;
-      transition: width .3s;
+      background-color: #ffffff;
+      /* Ubah warna garis di sini jika ingin warna lain */
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
     }
 
+    /* Memunculkan garis bawah saat menu mendapat class .active dari Scrollspy atau saat di-hover */
+    #mainNav .nav-link.active::after,
     #mainNav .nav-link:hover::after {
-      width: 100%;
+      transform: scaleX(1);
+      transform-origin: bottom left;
     }
 
     /* === FIX: Navbar mobile menu background agar terbaca === */
@@ -237,7 +246,7 @@
   </style>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#mainNav" style="scroll-behavior:smooth">
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100" tabindex="0">
 
   <!--  Navbar  -->
   <nav id="mainNav" class="navbar navbar-expand-lg fixed-top py-3" style="background:transparent">
@@ -250,15 +259,17 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navMenu">
         <ul class="navbar-nav gap-lg-3">
-          <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase active" href="#hero">Home</a>
+          </li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#about">About Me</a></li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#projects">Project</a>
           </li>
           <li class="nav-item"><a class="nav-link text-white fw-semibold text-uppercase" href="#courses">Course</a></li>
           <li class="nav-item">
-            <a href="https://drive.google.com/file/d/1tca2840URZtsE1bWn3fHBbSPcl19Xwx-/view?usp=sharing" class="nav-link text-white fw-semibold text-uppercase"  target="_blank" rel="noopener noreferrer">Download
+            <a href="https://drive.google.com/file/d/1tca2840URZtsE1bWn3fHBbSPcl19Xwx-/view?usp=sharing"
+              class="nav-link text-white fw-semibold text-uppercase" target="_blank" rel="noopener noreferrer">Download
               CV</a>
-            </li>
+          </li>
         </ul>
       </div>
     </div>
@@ -345,6 +356,17 @@
                         </a>
                       </td>
                     </tr>
+                    <tr>
+                      <td class="fw-bold" style="white-space:nowrap; font-size:clamp(0.7rem,2.5vw,0.875rem)">Degree</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem)">:</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem); word-break:break-word">Bachelor of Computer
+                        Science</td>
+                    </tr>
+                    <tr>
+                      <td class="fw-bold" style="white-space:nowrap; font-size:clamp(0.7rem,2.5vw,0.875rem)">GPA</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem)">:</td>
+                      <td style="font-size:clamp(0.7rem,2.5vw,0.875rem); word-break:break-word">3.70 / 4.00</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -355,13 +377,33 @@
             <div class="d-flex justify-content-center gap-4 mb-3 flex-wrap">
               <div class="text-start w-100">
 
-                <!-- Backend -->
                 <p class="text-secondary mb-2">
-                  <i class="bi bi-hdd-network me-2"></i>Back end
+                  <i class="bi bi-code-slash me-2"></i>Languages
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
+                  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white"
+                    alt="PHP" />
+                  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white"
+                    alt="NodeJS" />
+                  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"
+                    alt="Python" />
+                  <img
+                    src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"
+                    alt="JS" />
+                  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"
+                    alt="HTML5" />
+                  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"
+                    alt="CSS3" />
+                </div>
+
+                <p class="text-secondary mb-2">
+                  <i class="bi bi-box-seam me-2"></i>Frameworks & Libraries
                 </p>
                 <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
                   <img src="https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white"
                     alt="Laravel" />
+                  <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white"
+                    alt="Django" />
                   <img
                     src="https://img.shields.io/badge/CodeIgniter-EF4223?style=flat-square&logo=codeigniter&logoColor=white"
                     alt="CodeIgniter" />
@@ -373,47 +415,49 @@
                     alt="Yii2" />
                   <img src="https://img.shields.io/badge/Magento-EE672F?style=flat-square&logo=magento&logoColor=white"
                     alt="Magento" />
-                </div>
-
-                <!-- Frontend -->
-                <p class="text-secondary mb-2">
-                  <i class="bi bi-window me-2"></i>Frontend
-                </p>
-                <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
+                  <img src="https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white"
+                    alt="Flutter" />
                   <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white"
                     alt="Vue" />
                   <img
                     src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white"
                     alt="Bootstrap" />
                   <img
-                    src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"
-                    alt="JS" />
-                  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"
-                    alt="HTML5" />
-                  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"
-                    alt="CSS3" />
-                  <img
                     src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"
                     alt="Tailwind" />
+                  <img src="https://img.shields.io/badge/jQuery-0769AD?style=flat-square&logo=jquery&logoColor=white"
+                    alt="jQuery" />
+                  <img
+                    src="https://img.shields.io/badge/AngularJS-E23237?style=flat-square&logo=angular&logoColor=white"
+                    alt="AngularJS" />
                 </div>
 
-                <!-- Database & Language -->
                 <p class="text-secondary mb-2">
-                  <i class="bi bi-database me-2"></i>Languages & Database
+                  <i class="bi bi-database me-2"></i>Database & Caching
                 </p>
                 <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
-                  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white"
-                    alt="PHP" />
-                  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white"
-                    alt="NodeJS" />
                   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"
                     alt="MySQL" />
                   <img
                     src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white"
                     alt="PostgreSQL" />
+                  <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"
+                    alt="Redis" />
                 </div>
 
-                <!-- Tools -->
+                <p class="text-secondary mb-2">
+                  <i class="bi bi-cloud-arrow-down me-2"></i>API & Data Integration
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-3 skill-badges">
+                  <img
+                    src="https://img.shields.io/badge/REST_API-0052CC?style=flat-square&logo=json-web-tokens&logoColor=white"
+                    alt="REST API" />
+                  <img src="https://img.shields.io/badge/JSON-000000?style=flat-square&logo=json&logoColor=white"
+                    alt="JSON" />
+                  <img src="https://img.shields.io/badge/XML-990000?style=flat-square&logo=xml&logoColor=white"
+                    alt="XML" />
+                </div>
+
                 <p class="text-secondary mb-2">
                   <i class="bi bi-tools me-2"></i>Tools
                 </p>
@@ -437,20 +481,28 @@
             </h5>
 
             <p>
-              I am a fresh graduate in Informatics Engineering with over seven years of intensive self-driven learning
-              in software development, primarily through hands-on practice, and have built several real-world projects
-              including web-based systems and portfolio applications.
+              I am a Web Developer with hands-on internship experience and approximately four years of
+              continuous learning and project development in web technologies. During this time, I have
+              built web applications through academic projects, personal projects, and professional
+              internship experience, allowing me to strengthen my practical understanding of software
+              development, database design, RESTful API integration, and clean code principles.
             </p>
 
             <p>
-              I am capable of developing and scaling full-stack web applications end-to-end — covering backend systems,
-              API integration, frontend interfaces, and database design.
+              My technical expertise includes PHP, Laravel, CodeIgniter 4, JavaScript, HTML, CSS,
+              Bootstrap, MySQL, PostgreSQL, Git, REST API, MVC architecture, and Object-Oriented
+              Programming (OOP). I enjoy solving technical problems, debugging applications, optimizing
+              database queries, and developing scalable, maintainable systems. I am also comfortable
+              working collaboratively in a team while continuously learning new technologies to improve
+              my skills.
             </p>
 
             <p>
-              With experience across multiple frameworks and modern technologies, I focus on writing clean, maintainable
-              code and delivering efficient, scalable solutions. I am highly motivated to grow as a professional
-              developer and contribute to impactful software projects.
+              Although my professional experience consists of a three-month internship, I have
+              consistently invested the past four years in developing real-world projects and expanding
+              my technical capabilities. I am a fast learner, detail-oriented, adaptable, and committed to
+              delivering high-quality solutions. I am eager to contribute, grow professionally, and create
+              value as a Web Developer in a dynamic development team.
             </p>
 
             <!-- Social -->
@@ -500,408 +552,889 @@
       <!-- Row Project Images with Carousel -->
       <div class="row g-4">
 
-        <!-- Project 1: Pendekar (1 Image) -->
+
+        <!-- Project 1: Pendekar Bar & Resto -->
         <div class="col-12 col-md-6">
+
+          <!-- Carousel -->
           <div id="carouselProject1" class="carousel slide" data-bs-interval="false">
-
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="0" class="active bg-secondary"
-                aria-current="true"></button>
-              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="1" class="active bg-secondary
-                class=" bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="2"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="3"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="4"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="5"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="6"
-                class="bg-secondary"></button>
-            </div>
-
-
-            <div class="carousel-inner rounded shadow-sm overflow-hidden">
-              <div class="carousel-item active">
-                <img src="assets/img/project/pendekar/index.png" class="project-img d-block w-100" alt="Pendekar 1">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/pendekar/chart_order.png" class="project-img d-block w-100"
-                  alt="Pendekar 2">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/pendekar/min_order.png" class="project-img d-block w-100" alt="Pendekar 3">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/pendekar/payment_QR.png" class="project-img d-block w-100"
-                  alt="Pendekar 4">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/pendekar/result_table.png" class="project-img d-block w-100"
-                  alt="Pendekar 5">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/pendekar/report_generate.png" class="project-img d-block w-100"
-                  alt="Pendekar 6">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/pendekar/daily_visitor_report.png" class="project-img d-block w-100"
-                  alt="Pendekar 7">
-              </div>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject1" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject1" data-bs-slide="next">
-              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Project 2: SalBilliard (1 Image) -->
-        <div class="col-12 col-md-6">
-          <div id="carouselProject2" class="carousel slide" data-bs-interval="false">
-
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselProject2" data-bs-slide-to="0" class="active bg-secondary"
-                aria-current="true"></button>
-              <button type="button" data-bs-target="#carouselProject2" data-bs-slide-to="1"
-                class="bg-secondary"></button>
-            </div>
-
-
-            <div class="carousel-inner rounded shadow-sm overflow-hidden">
-              <div class="carousel-item active">
-                <img src="assets/img/project/salbilliard/index.png" class="project-img d-block w-100"
-                  alt="salbilliard 1">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/salbilliard/table_checkin_timeslot_form.png"
-                  class="project-img d-block w-100" alt="salbilliard 2">
-              </div>
-            </div>
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2" data-bs-slide="next">
-              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Project 3: HRIS (1 Image) -->
-        <div class="col-12 col-md-6">
-          <div id="carouselProject3" class="carousel slide carousel-hover-reveal" data-bs-interval="false">
-
-            <!-- Dots: 10 dots (index 0-9), hapus yang ke-11 karena path-nya rusak -->
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="0" class="active bg-secondary"
-                aria-current="true"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="1" class="active bg-secondary
-                class=" bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="2"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="3"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="4"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="5"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="6"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="7"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="8"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="9"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="10"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="11"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="12"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="13"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="14"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="15"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="16"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="17"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="18"
-                class="bg-secondary"></button>
-            </div>
-
-            <div class="carousel-inner rounded shadow-sm overflow-hidden">
-              <div class="carousel-item active">
-                <img src="assets/img/project/hris/index.png" class="project-img d-block w-100" alt="hris 1">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/new_employee/form_session_admin.png" class="project-img d-block w-100"
-                  alt="hris 2">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/new_employee/register_new_worker.png"
-                  class="project-img d-block w-100" alt="hris 3">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/new_employee/profile_new_employee.png"
-                  class="project-img d-block w-100" alt="hris 4">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/new_employee/set_salary_grade.png" class="project-img d-block w-100"
-                  alt="hris 5">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/new_employee/all_employees.png" class="project-img d-block w-100"
-                  alt="hris 6">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/attendance/form_attendance.png" class="project-img d-block w-100"
-                  alt="hris 7">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/attendance/attendance_fiture.png" class="project-img d-block w-100"
-                  alt="hris 8">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/attendance/clock_in.png" class="project-img d-block w-100"
-                  alt="hris 9">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/leave/form_leave_request.png" class="project-img d-block w-100"
-                  alt="hris 10">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/leave/leave_reason_request.png" class="project-img d-block w-100"
-                  alt="hris 11">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/leave/leave_status.png" class="project-img d-block w-100"
-                  alt="hris 12">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/leave/admin_leave_approval.png" class="project-img d-block w-100"
-                  alt="hris 13">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/news/news_form_login.png" class="project-img d-block w-100"
-                  alt="hris 14">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/news/all_news.png" class="project-img d-block w-100"
-                  alt="hris 15">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/overtimes/login_ot.png" class="project-img d-block w-100"
-                  alt="hris 16">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/overtimes/overtime_feature.png" class="project-img d-block w-100"
-                  alt="hris 17">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/overtimes/admin_access_ot.png" class="project-img d-block w-100"
-                  alt="hris 18">
-              </div>
-              <div class="carousel-item">
-                <img src="assets/img/project/hris/payroll/Payslip Timothy (101).png" class="project-img d-block w-100"
-                  alt="hris 19">
-              </div>
-            </div>
-
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2" data-bs-slide="next">
-              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-
-          </div>
-        </div>
-
-        <!-- Project 4: GMF (1 Image) -->
-        <div class="col-12 col-md-6">
-          <div id="carouselProject4" class="carousel slide carousel-hover-reveal" data-bs-interval="false">
-
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="0" class="active bg-secondary"
-                aria-current="true"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="1"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="2"
-                class="bg-secondary"></button>
-            </div>
 
             <!-- Images -->
             <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
               <div class="carousel-item active">
-                <img src="assets/img/project/gmf/gmf (2).png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/pendekar/index.png" class="project-img d-block w-100"
+                  alt="Pendekar Landing Page">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/gmf/gmf (3).png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/pendekar/chart_order.png" class="project-img d-block w-100"
+                  alt="Order Chart">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/gmf/gmf(4).png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/pendekar/min_order.png" class="project-img d-block w-100"
+                  alt="Minimum Order">
               </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/payment_QR.png" class="project-img d-block w-100"
+                  alt="QR Payment">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/result_table.png" class="project-img d-block w-100"
+                  alt="Reservation Result">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/report_generate.png" class="project-img d-block w-100"
+                  alt="Generate Report">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/pendekar/daily_visitor_report.png" class="project-img d-block w-100"
+                  alt="Daily Visitor Report">
+              </div>
+
             </div>
 
-            <!-- Controls -->
+            <!-- Previous -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject1" data-bs-slide="prev">
+
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Next -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject1" data-bs-slide="next">
+
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
+
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="1"></button>
+
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="2"></button>
+
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="3"></button>
+
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="4"></button>
+
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="5"></button>
+
+              <button type="button" data-bs-target="#carouselProject1" data-bs-slide-to="6"></button>
+
+            </div>
+
+          </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              Pendekar Bar & Resto Reservation System
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-primary">PHP</span>
+              <span class="badge bg-warning text-dark">MySQL</span>
+              <span class="badge bg-success">FIFO Queue</span>
+              <span class="badge bg-danger">Reservation</span>
+              <span class="badge bg-info text-dark">Reporting</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Restaurant table reservation system implementing the First In First Out (FIFO)
+              algorithm to optimize booking flow, reduce reservation conflicts, generate
+              QR payment, and provide daily visitor reporting.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/Web-Based-Table-Reservation" target="_blank"
+              rel="noopener noreferrer" class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Project 2: SAL BilliardPro -->
+        <div class="col-12 col-md-6">
+
+          <!-- Carousel -->
+          <div id="carouselProject2" class="carousel slide" data-bs-interval="false">
+
+            <!-- Images -->
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
+              <div class="carousel-item active">
+                <img src="assets/img/project/salbilliard/index.png" class="project-img d-block w-100"
+                  alt="SAL BilliardPro Landing Page">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/salbilliard/table_checkin_timeslot_form.png"
+                  class="project-img d-block w-100" alt="Table Reservation">
+              </div>
+
+            </div>
+
+            <!-- Previous -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject2" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
+
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
             </button>
+
+            <!-- Next -->
             <button class="carousel-control-next" type="button" data-bs-target="#carouselProject2" data-bs-slide="next">
-              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
             </button>
 
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+
+              <button type="button" data-bs-target="#carouselProject2" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
+
+              <button type="button" data-bs-target="#carouselProject2" data-bs-slide-to="1"></button>
+
+            </div>
+
           </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              SAL BilliardPro Reservation & Timer System
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-primary">PHP</span>
+              <span class="badge bg-warning text-dark">MySQL</span>
+              <span class="badge bg-success">Reservation</span>
+              <span class="badge bg-info text-dark">Real-time Timer</span>
+              <span class="badge bg-secondary">Management System</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Real-time billiard table reservation and management system featuring
+              automated table timers, check-in scheduling, rental duration tracking,
+              and customer reservation management.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/Billiard-Reservation-and-Timer-System" target="_blank"
+              rel="noopener noreferrer" class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
         </div>
 
-        <!-- Project 5: Weather (1 Image) -->
+
+        <!-- Project 3: SAL Launch HRIS Super App -->
         <div class="col-12 col-md-6">
-          <div id="carouselProject5" class="carousel slide" data-bs-interval="false">
+
+          <!-- Carousel -->
+          <div id="carouselProject3" class="carousel slide" data-bs-interval="false">
+
+            <!-- Images -->
             <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
               <div class="carousel-item active">
-                <img src="assets/img/project/nusa_weather/weather.png" class="project-img d-block w-100" alt="Weather">
+                <img src="assets/img/project/hris/index.png" class="project-img d-block w-100" alt="HRIS Dashboard">
               </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/form_session_admin.png" class="project-img d-block w-100"
+                  alt="Employee Session">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/register_new_worker.png"
+                  class="project-img d-block w-100" alt="Register Employee">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/profile_new_employee.png"
+                  class="project-img d-block w-100" alt="Employee Profile">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/set_salary_grade.png" class="project-img d-block w-100"
+                  alt="Salary Grade">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/new_employee/all_employees.png" class="project-img d-block w-100"
+                  alt="Employee List">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/attendance/form_attendance.png" class="project-img d-block w-100"
+                  alt="Attendance Form">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/attendance/attendance_fiture.png" class="project-img d-block w-100"
+                  alt="Attendance">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/attendance/clock_in.png" class="project-img d-block w-100"
+                  alt="Clock In">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/leave/form_leave_request.png" class="project-img d-block w-100"
+                  alt="Leave Request">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/leave/leave_reason_request.png" class="project-img d-block w-100"
+                  alt="Leave Reason">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/leave/leave_status.png" class="project-img d-block w-100"
+                  alt="Leave Status">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/leave/admin_leave_approval.png" class="project-img d-block w-100"
+                  alt="Leave Approval">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/news/news_form_login.png" class="project-img d-block w-100"
+                  alt="News Login">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/news/all_news.png" class="project-img d-block w-100" alt="News">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/overtimes/login_ot.png" class="project-img d-block w-100"
+                  alt="Overtime Login">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/overtimes/overtime_feature.png" class="project-img d-block w-100"
+                  alt="Overtime Feature">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/overtimes/admin_access_ot.png" class="project-img d-block w-100"
+                  alt="Overtime Admin">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/hris/payroll/Payslip Timothy (101).png" class="project-img d-block w-100"
+                  alt="Payroll">
+              </div>
+
             </div>
+
+            <!-- Previous -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject3" data-bs-slide="prev">
+
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Next -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject3" data-bs-slide="next">
+
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="2"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="3"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="4"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="5"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="6"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="7"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="8"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="9"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="10"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="11"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="12"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="13"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="14"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="15"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="16"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="17"></button>
+              <button type="button" data-bs-target="#carouselProject3" data-bs-slide-to="18"></button>
+
+            </div>
+
           </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              SAL Launch HRIS Super App
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-danger">Laravel</span>
+              <span class="badge bg-primary">PostgreSQL</span>
+              <span class="badge bg-success">HRIS</span>
+              <span class="badge bg-info text-dark">Attendance</span>
+              <span class="badge bg-warning text-dark">Payroll</span>
+              <span class="badge bg-secondary">Leave Management</span>
+              <span class="badge bg-dark">Overtime</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Enterprise Human Resource Information System integrating employee management,
+              attendance, payroll, leave requests, overtime management, approval workflows,
+              and company news into a single integrated platform.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/HRIS.sallaunch_production" target="_blank"
+              rel="noopener noreferrer" class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
         </div>
 
-        <!-- Project 6: SalMovie (1 Images - With Controls) -->
+        <!-- Project 4: GMF Aviation Flight Reliability Report -->
         <div class="col-12 col-md-6">
-          <div id="carouselProject5" class="carousel slide" data-bs-interval="false">
+
+          <!-- Carousel -->
+          <div id="carouselProject4" class="carousel slide" data-bs-interval="false">
+
+            <!-- Images -->
             <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
               <div class="carousel-item active">
-                <img src="assets/img/project/salmovie/index.png" class="project-img d-block w-100" alt="Weather">
+                <img src="assets/img/project/gmf/gmf (2).png" class="project-img d-block w-100" alt="GMF Dashboard">
               </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/gmf/gmf (3).png" class="project-img d-block w-100"
+                  alt="Flight Reliability Report">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/gmf/gmf(4).png" class="project-img d-block w-100"
+                  alt="Reliability Dashboard">
+              </div>
+
             </div>
+
+            <!-- Previous -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject4" data-bs-slide="prev">
+
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Next -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject4" data-bs-slide="next">
+
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
+
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="1"></button>
+
+              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="2"></button>
+
+            </div>
+
           </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              GMF Aviation Flight Reliability Report
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-danger">Laravel</span>
+              <span class="badge bg-primary">MySQL</span>
+              <span class="badge bg-success">Dashboard</span>
+              <span class="badge bg-warning text-dark">Reporting</span>
+              <span class="badge bg-info text-dark">Data Analytics</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Flight reliability reporting system developed for PT GMF AeroAsia to monitor
+              aircraft fleet performance, reliability metrics, and maintenance reports,
+              helping engineers make data-driven maintenance decisions.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/gmf-reliability.co.id" target="_blank" rel="noopener noreferrer"
+              class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Project 5: Nusa Weather -->
+        <div class="col-12 col-md-6">
+
+          <!-- Carousel -->
+          <div id="carouselProject5" class="carousel slide" data-bs-interval="false">
+
+            <!-- Images -->
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
+              <div class="carousel-item active">
+                <img src="assets/img/project/nusa_weather/weather.png" class="project-img d-block w-100"
+                  alt="Nusa Weather">
+              </div>
+
+            </div>
+
+            <!-- Previous -->
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject5" data-bs-slide="prev">
+
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button> -->
+
+            <!-- Next -->
+            <!-- <button class="carousel-control-next" type="button" data-bs-target="#carouselProject5" data-bs-slide="next">
+
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button> -->
+
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+
+              <button type="button" data-bs-target="#carouselProject5" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
+
+            </div>
+
+          </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              Nusa Weather
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-warning text-dark">JavaScript</span>
+              <span class="badge bg-primary">WeatherAPI</span>
+              <span class="badge bg-success">REST API</span>
+              <span class="badge bg-info text-dark">Real-time Forecast</span>
+              <span class="badge bg-secondary">Health Notification</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Real-time weather forecasting application powered by WeatherAPI, providing
+              current weather conditions, temperature forecasts, and smart health
+              recommendations based on environmental conditions.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/Nusa-Weather" target="_blank" rel="noopener noreferrer"
+              class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Project 6: SAL Movie -->
+        <div class="col-12 col-md-6">
+
+          <!-- Carousel -->
+          <div id="carouselProject6" class="carousel slide" data-bs-interval="false">
+
+            <!-- Images -->
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
+              <div class="carousel-item active">
+                <img src="assets/img/project/salmovie/index.png" class="project-img d-block w-100" alt="1">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/salmovie/search.png" class="project-img d-block w-100" alt="2">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/salmovie/result.png" class="project-img d-block w-100" alt="3">
+              </div>
+              <div class="carousel-item">
+                <img src="assets/img/project/salmovie/movie-detail.png" class="project-img d-block w-100" alt="4">
+              </div>
+
+            </div>
+
+            <!-- Previous -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject6" data-bs-slide="prev">
+
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Next -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject6" data-bs-slide="next">
+
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+
+            </button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+
+              <button type="button" data-bs-target="#carouselProject6" data-bs-slide-to="0" class="active"
+                aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselProject6" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#carouselProject6" data-bs-slide-to="2"></button>
+              <button type="button" data-bs-target="#carouselProject6" data-bs-slide-to="3"></button>
+
+            </div>
+
+          </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              SAL Movie
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-warning text-dark">JavaScript</span>
+              <span class="badge bg-primary">OMDb API</span>
+              <span class="badge bg-success">REST API</span>
+              <span class="badge bg-info text-dark">Movie Search</span>
+              <span class="badge bg-secondary">Responsive UI</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Movie search and discovery application powered by the OMDb REST API,
+              allowing users to search movies in real time and view detailed information
+              such as posters, ratings, release dates, genres, and plot summaries.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/SAL-Movie" target="_blank" rel="noopener noreferrer"
+              class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
         </div>
 
 
 
         <!-- Project 7: Kopmer (3 Images - With Controls) -->
+        <!-- Project 7: Kopi Merapi Adventure Cafe -->
         <div class="col-12 col-md-6">
-          <div id="carouselProject7" class="carousel slide carousel-hover-reveal" data-bs-interval="false">
 
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="0" class="active bg-secondary"
-                aria-current="true"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="1"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="2"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="3"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="4"
-                class="bg-secondary"></button>
-            </div>
+          <!-- Carousel -->
+          <div id="carouselProject7" class="carousel slide" data-bs-interval="false">
 
             <!-- Images -->
             <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
               <div class="carousel-item active">
-                <img src="assets/img/project/kopmer/kopmer_landingpage.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/kopmer/kopmer_landingpage.png" class="project-img d-block w-100"
+                  alt="Landing Page">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/kopmer/kopmer_coffee.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/kopmer/kopmer_coffee.png" class="project-img d-block w-100" alt="Coffee">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/kopmer/kopmer_adventure.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/kopmer/kopmer_adventure.png" class="project-img d-block w-100"
+                  alt="Adventure">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/kopmer/kopmer_nature.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/kopmer/kopmer_nature.png" class="project-img d-block w-100" alt="Nature">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/kopmer/kopmer_booking.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/kopmer/kopmer_booking.png" class="project-img d-block w-100" alt="Booking">
               </div>
+
             </div>
 
-            <!-- Controls -->
+            <!-- Previous -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject7" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject7" data-bs-slide="next">
-              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
             </button>
 
+            <!-- Next -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject7" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+            </button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+              <button type="button" data-bs-target="#carouselProject7" data-bs-slide-to="0" class="active"></button>
+              <button type="button" data-bs-target="#carouselProject7" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#carouselProject7" data-bs-slide-to="2"></button>
+              <button type="button" data-bs-target="#carouselProject7" data-bs-slide-to="3"></button>
+              <button type="button" data-bs-target="#carouselProject7" data-bs-slide-to="4"></button>
+            </div>
+
           </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              Kopi Merapi Adventure Cafe
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-secondary">Symfony 7.4</span>
+              <span class="badge bg-primary">Doctrine ORM</span>
+              <span class="badge bg-success">Booking System</span>
+              <span class="badge bg-info text-dark">DTO</span>
+              <span class="badge bg-warning text-dark">Event Driven</span>
+              <span class="badge bg-dark">Admin Dashboard</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Tourist destination booking system built with Symfony 7.4 using a layered
+              architecture, DTO-based request handling, Doctrine ORM, event-driven booking
+              workflow, automated invoice generation, and an administrative dashboard.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/kopi_merapi_adventure_cafe" target="_blank"
+              rel="noopener noreferrer" class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
         </div>
 
 
-                <!-- Project 7: Kopmer (3 Images - With Controls) -->
+        <!-- Project 8: laravel-dynamic-form-builder (6 Images - With Controls) -->
+        <!-- Project 8: Laravel Dynamic Form Builder -->
         <div class="col-12 col-md-6">
-          <div id="carouselProject7" class="carousel slide carousel-hover-reveal" data-bs-interval="false">
 
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="0" class="active bg-secondary"
-                aria-current="true"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="1"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="2"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="3"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="4"
-                class="bg-secondary"></button>
-              <button type="button" data-bs-target="#carouselProject4" data-bs-slide-to="5"
-                class="bg-secondary"></button>
-            </div>
+          <!-- Carousel -->
+          <div id="carouselProject8" class="carousel slide" data-bs-interval="false">
 
             <!-- Images -->
             <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
               <div class="carousel-item active">
-                <img src="assets/img/project/laravel-dynamic-form-builder/External_id (Detail Kejadian Resiko Operasional).png" class="project-img d-block w-100" alt="">
+                <img
+                  src="assets/img/project/laravel-dynamic-form-builder/External_id (Detail Kejadian Resiko Operasional).png"
+                  class="project-img d-block w-100" alt="Dynamic Form 1">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/laravel-dynamic-form-builder/External_id (Detail Kerugian).png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/laravel-dynamic-form-builder/External_id (Detail Kerugian).png"
+                  class="project-img d-block w-100" alt="Dynamic Form 2">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/laravel-dynamic-form-builder/Dynamic FormView Vuejs.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/laravel-dynamic-form-builder/Dynamic FormView Vuejs.png"
+                  class="project-img d-block w-100" alt="Dynamic Form 3">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/laravel-dynamic-form-builder/test btn console-log.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/laravel-dynamic-form-builder/test btn console-log.png"
+                  class="project-img d-block w-100" alt="Dynamic Form 4">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/laravel-dynamic-form-builder/test btn Method handleSubmit.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/laravel-dynamic-form-builder/test btn Method handleSubmit.png"
+                  class="project-img d-block w-100" alt="Dynamic Form 5">
               </div>
+
               <div class="carousel-item">
-                <img src="assets/img/project/laravel-dynamic-form-builder/Page 200 Success.png" class="project-img d-block w-100" alt="">
+                <img src="assets/img/project/laravel-dynamic-form-builder/Page 200 Success.png"
+                  class="project-img d-block w-100" alt="Dynamic Form 6">
               </div>
+
+            </div>
+
+            <!-- Previous -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject8" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
+            </button>
+
+            <!-- Next -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject8" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
+            </button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators mb-2">
+              <button type="button" data-bs-target="#carouselProject8" data-bs-slide-to="0" class="active"></button>
+              <button type="button" data-bs-target="#carouselProject8" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#carouselProject8" data-bs-slide-to="2"></button>
+              <button type="button" data-bs-target="#carouselProject8" data-bs-slide-to="3"></button>
+              <button type="button" data-bs-target="#carouselProject8" data-bs-slide-to="4"></button>
+              <button type="button" data-bs-target="#carouselProject8" data-bs-slide-to="5"></button>
+            </div>
+
+          </div>
+
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              Laravel Dynamic Form Builder
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-danger">Laravel</span>
+              <span class="badge bg-success">Vue.js 3</span>
+              <span class="badge bg-primary">REST API</span>
+              <span class="badge bg-info text-dark">Dynamic Form</span>
+              <span class="badge bg-warning text-dark">JSON Import</span>
+              <span class="badge bg-secondary">AJAX</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Dynamic form builder application that imports JSON feeds and automatically
+              renders interactive forms using Laravel REST APIs and Vue.js 3 based on
+              configurable data structures.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/laravel-dynamic-form-builder" target="_blank"
+              rel="noopener noreferrer" class="btn btn-dark btn-sm">
+
+              <i class="bi bi-github"></i> View GitHub
+
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Project 9: CI-SIMRS (6 Images - With Controls) -->
+        <div class="col-12 col-md-6">
+
+          <!-- Carousel -->
+          <div id="carouselProject9" class="carousel slide" data-bs-interval="false">
+
+            <!-- Images -->
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+
+              <div class="carousel-item active">
+                <img src="assets/img/project/simrs/Master-Group.png" class="project-img d-block w-100" alt="">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/simrs/Recently-Deleted-Group.png" class="project-img d-block w-100" alt="">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/simrs/notify-restore.png" class="project-img d-block w-100" alt="">
+              </div>
+
+              <div class="carousel-item">
+                <img src="assets/img/project/simrs/Result-Recover.png" class="project-img d-block w-100" alt="">
+              </div>
+
             </div>
 
             <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject7" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject9" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3"></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject7" data-bs-slide="next">
-              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject9" data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3"></span>
             </button>
+
+            <!-- Indicators (sekarang menempel di gambar) -->
+            <div class="carousel-indicators mb-2">
+              <button type="button" data-bs-target="#carouselProject9" data-bs-slide-to="0" class="active"></button>
+              <button type="button" data-bs-target="#carouselProject9" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#carouselProject9" data-bs-slide-to="2"></button>
+              <button type="button" data-bs-target="#carouselProject9" data-bs-slide-to="3"></button>
+            </div>
 
           </div>
-        </div>
 
-      </div>
-    </div>
+          <!-- Project Information -->
+          <div class="bg-white border rounded-bottom p-3 shadow-sm">
+
+            <h5 class="fw-bold mb-2">
+              SIMRS Nurul Sehat Salatiga
+            </h5>
+
+            <div class="mb-2">
+              <span class="badge bg-danger">CodeIgniter 4</span>
+              <span class="badge bg-primary">PostgreSQL</span>
+              <span class="badge bg-info text-dark">Server-side DataTables</span>
+              <span class="badge bg-success">AJAX CRUD</span>
+              <span class="badge bg-warning text-dark">Recycle Bin</span>
+              <span class="badge bg-secondary">Auto Purge 30 Days</span>
+            </div>
+
+            <p class="small text-muted mb-2">
+              Hospital Information Management System featuring modular master data,
+              soft delete, recycle bin, restore, permanent delete, and automatic
+              purge after 30 days.
+            </p>
+
+            <a href="https://github.com/mfaizalsyahroni/simrs-nurul-sehat-salatiga" target="_blank"
+              rel="noopener noreferrer" class="btn btn-dark btn-sm">
+              <i class="bi bi-github"></i> View GitHub
+            </a>
+
+          </div>
+
+        </div>
   </section>
 
   <!--  WakaTime  -->
@@ -1028,9 +1561,9 @@
 
 
 
-    <!--  Crdentials  -->
+  <!--  Crdentials  -->
   <section id="credentials" class="py-5" style="background-color: #f0f4f8;">
-    
+
     <div class="container">
       <div class="d-flex justify-content-center mb-5">
         <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:420px">
@@ -1039,11 +1572,25 @@
           <p class="text-muted small mb-3">Official academic records and graduation documents.</p>
           <div class="mx-auto bg-danger rounded" style="width:40px;height:4px"></div>
         </div>
-      </div>    
+      </div>
 
-      <div class="row g-4 justify-content-center">
+      <div class="row g-4">
 
-        <div class="col-12 col-sm-6 col-md-5">
+
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="card border-0 shadow-sm h-100 overflow-hidden">
+            <a href="assets/img/certification/transcript of grades.png" target="_blank">
+              <img src="assets/img/certification/transcript of grades.png" class="course-img" alt="PHKM" />
+            </a>
+            <div class="card-body">
+              <h6 class="fw-bold mb-1">Transcript of Grades</h6>
+              <small class="text-danger fw-semibold">Mercu Buana University</small>
+              <small class="text-muted"> / 17 Oct 2025</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4">
           <div class="card border-0 shadow-sm h-100 overflow-hidden">
             <a href="assets/img/certification/SKL.png" target="_blank">
               <img src="assets/img/certification/SKL.png" class="course-img" alt="Oracle" />
@@ -1056,16 +1603,53 @@
           </div>
         </div>
 
-        <div class="col-12 col-sm-6 col-md-5">
-          <div class="card border-0 shadow-sm h-100 overflow-hidden">
-            <a href="assets/img/certification/transcript of grades.png" target="_blank">
-              <img src="assets/img/certification/transcript of grades.png" class="course-img" alt="PHKM" />
-            </a>
-            <div class="card-body">
-              <h6 class="fw-bold mb-1">Transcript of Grades</h6>
-              <small class="text-danger fw-semibold">Mercu Buana University</small>
-              <small class="text-muted"> / 17 Oct 2025</small>
+
+        <div class="col-12 col-sm-6 col-md-4">
+
+          <div id="carouselCertificate" class="carousel slide card border-0 shadow-sm h-100 overflow-hidden"
+            data-bs-ride="carousel">
+
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselCertificate" data-bs-slide-to="0"
+                class="active bg-secondary" aria-current="true"></button>
+              <button type="button" data-bs-target="#carouselCertificate" data-bs-slide-to="1"
+                class="bg-secondary"></button>
             </div>
+
+            <!-- Images -->
+            <div class="carousel-inner rounded shadow-sm overflow-hidden">
+              <div class="carousel-item active">
+                <a href="assets/img/certification/BNSP-1.png" target="_blank">
+                  <img src="assets/img/certification/BNSP-1.png" class="project-img d-block w-100" alt="BNSP 1">
+                </a>
+              </div>
+              <div class="carousel-item">
+                <a href="assets/img/certification/BNSP-2.png" target="_blank">
+                  <img src="assets/img/certification/BNSP-2.png" class="project-img d-block w-100" alt="BNSP 2">
+                </a>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCertificate"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselCertificate"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon bg-dark bg-opacity-50 rounded p-3" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+
+            <!-- Caption / Info -->
+            <div class="card-body bg-white">
+              <h6 class="fw-bold mb-1">BNSP</h6>
+              <small class="text-danger fw-semibold">Mercu Buana University</small>
+              <small class="text-muted"> / 10 Feb 2025</small>
+            </div>
+
           </div>
         </div>
 
@@ -1121,178 +1705,184 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // =========================================
-    // Navbar Scroll Effect
-    // =========================================
-    const nav = document.getElementById('mainNav');
-    const hero = document.getElementById('hero');
+    document.addEventListener('DOMContentLoaded', function () {
 
-    window.addEventListener('scroll', () => {
-      const heroHeight = hero.offsetHeight;
-      if (window.scrollY >= heroHeight - 80) {
-        nav.style.background = 'rgba(108, 117, 125, 0.95)';
-      } else {
-        nav.style.background = 'transparent';
-      }
-    });
+      // =========================================
+      // Navbar Scroll Effect
+      // =========================================
+      const nav = document.getElementById('mainNav');
+      const hero = document.getElementById('hero');
 
-    // =========================================
-    // Back To Top
-    // =========================================
-    const btn = document.getElementById('backTop');
-
-    window.addEventListener('scroll', () => {
-      btn.classList.toggle('d-none', scrollY < 300);
-      btn.classList.toggle('d-flex', scrollY >= 300);
-    });
-
-    // =========================================
-    // Typed Text
-    // =========================================
-    const el = document.getElementById('typed-text');
-    const txt = 'Fullstack Developer';
-
-    let i = 0;
-    let dir = 1;
-
-    function type() {
-      el.textContent = txt.slice(0, i) + '|';
-      i += dir;
-
-      if (i > txt.length) {
-        dir = -1;
-        setTimeout(type, 1800);
-        return;
-      }
-
-      if (i < 0) {
-        dir = 1;
-        i = 0;
-        setTimeout(type, 400);
-        return;
-      }
-
-      setTimeout(type, dir > 0 ? 110 : 60);
-    }
-
-    type();
-
-    // =========================================
-    // CAROUSEL CLICK-TO-REVEAL CONTROLS
-    // Dots & panah muncul setelah gambar diklik,
-    // hilang otomatis setelah 4 detik tidak ada aktivitas
-    // =========================================
-    const carouselHover = document.querySelector('.carousel-hover-reveal');
-
-    if (carouselHover) {
-      let hideTimeout;
-
-      function showControls() {
-        carouselHover.classList.add('controls-visible');
-        clearTimeout(hideTimeout);
-        // Auto-hide setelah 4 detik tanpa aktivitas
-        hideTimeout = setTimeout(() => {
-          carouselHover.classList.remove('controls-visible');
-        }, 4000);
-      }
-
-      // Klik pada gambar carousel → tampilkan controls
-      carouselHover.querySelectorAll('.project-img').forEach(img => {
-        img.addEventListener('click', (e) => {
-          // Cegah klik gambar membuka gallery modal jika controls belum aktif
-          if (!carouselHover.classList.contains('controls-visible')) {
-            e.stopPropagation(); // Cegah bubble ke gallery modal
-            showControls();
+      if (nav && hero) {
+        window.addEventListener('scroll', () => {
+          const heroHeight = hero.offsetHeight;
+          if (window.scrollY >= heroHeight - 80) {
+            nav.style.background = 'rgba(108, 117, 125, 0.95)';
+          } else {
+            nav.style.background = 'transparent';
           }
-          // Jika sudah visible, biarkan klik normal (buka gallery)
+        });
+      }
+
+      // =========================================
+      // Back To Top
+      // =========================================
+      const btn = document.getElementById('backTop');
+
+      if (btn) {
+        window.addEventListener('scroll', () => {
+          btn.classList.toggle('d-none', window.scrollY < 300);
+          btn.classList.toggle('d-flex', window.scrollY >= 300);
+        });
+      }
+
+      // =========================================
+      // Typed Text
+      // =========================================
+      const el = document.getElementById('typed-text');
+      const txt = 'Fullstack Developer';
+
+      if (el) {
+        let i = 0;
+        let dir = 1;
+
+        function type() {
+          el.textContent = txt.slice(0, i) + '|';
+          i += dir;
+
+          if (i > txt.length) {
+            dir = -1;
+            setTimeout(type, 1800);
+            return;
+          }
+
+          if (i < 0) {
+            dir = 1;
+            i = 0;
+            setTimeout(type, 400);
+            return;
+          }
+
+          setTimeout(type, dir > 0 ? 110 : 60);
+        }
+
+        type();
+      }
+
+      // =========================================
+      // CAROUSEL CLICK-TO-REVEAL CONTROLS
+      // Dots & panah muncul setelah gambar diklik,
+      // hilang otomatis setelah 4 detik tidak ada aktivitas
+      // FIX: querySelectorAll agar semua carousel kebagian,
+      //      bukan cuma yang pertama
+      // =========================================
+      const carouselHoverList = document.querySelectorAll('.carousel-hover-reveal');
+
+      carouselHoverList.forEach((carouselHover) => {
+        let hideTimeout;
+
+        function showControls() {
+          carouselHover.classList.add('controls-visible');
+          clearTimeout(hideTimeout);
+          hideTimeout = setTimeout(() => {
+            carouselHover.classList.remove('controls-visible');
+          }, 4000);
+        }
+
+        carouselHover.querySelectorAll('.project-img').forEach(img => {
+          img.addEventListener('click', (e) => {
+            if (!carouselHover.classList.contains('controls-visible')) {
+              e.stopImmediatePropagation(); // FIX: cegah listener gallery modal ikut jalan
+              showControls();
+            }
+          });
+        });
+
+        carouselHover.querySelectorAll('.carousel-control-prev, .carousel-control-next').forEach(btn => {
+          btn.addEventListener('click', showControls);
+        });
+
+        carouselHover.querySelectorAll('.carousel-indicators button').forEach(dot => {
+          dot.addEventListener('click', showControls);
+        });
+
+        carouselHover.addEventListener('touchstart', showControls, { passive: true });
+      });
+
+      // =========================================
+      // GALLERY MODAL
+      // =========================================
+      const images = document.querySelectorAll('.project-img');
+      const galleryModalEl = document.getElementById('galleryModal');
+
+      if (galleryModalEl && images.length) {
+        const galleryModal = new bootstrap.Modal(galleryModalEl);
+        const galleryImage = document.getElementById('galleryImage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+
+        images.forEach((img, index) => {
+          img.style.cursor = 'pointer';
+          img.addEventListener('click', () => {
+            currentIndex = index;
+            galleryImage.src = img.src;
+            galleryModal.show();
+          });
+        });
+
+        function resetZoom() {
+          zoomed = false;
+          galleryImage.style.transform = 'scale(1)';
+          galleryImage.style.cursor = 'zoom-in';
+        }
+
+        nextBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex + 1) % images.length;
+          galleryImage.src = images[currentIndex].src;
+          resetZoom();
+        });
+
+        prevBtn.addEventListener('click', () => {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          galleryImage.src = images[currentIndex].src;
+          resetZoom();
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (!galleryModalEl.classList.contains('show')) return;
+          if (e.key === 'ArrowRight') nextBtn.click();
+          if (e.key === 'ArrowLeft') prevBtn.click();
+          if (e.key === 'Escape') galleryModal.hide();
+        });
+
+        let zoomed = false;
+        galleryImage.addEventListener('click', () => {
+          zoomed = !zoomed;
+          galleryImage.style.transform = zoomed ? 'scale(1.8)' : 'scale(1)';
+          galleryImage.style.cursor = zoomed ? 'zoom-out' : 'zoom-in';
+        });
+      }
+
+      // =========================================
+      // NAVBAR ACTIVE LINK + SCROLLSPY
+      // =========================================
+      const navLinks = document.querySelectorAll("#mainNav .nav-link");
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          navLinks.forEach((item) => item.classList.remove("active"));
+          this.classList.add("active");
         });
       });
 
-      // Klik tombol panah → perpanjang waktu tampil
-      carouselHover.querySelectorAll('.carousel-control-prev, .carousel-control-next').forEach(btn => {
-        btn.addEventListener('click', showControls);
+      const dataSpyList = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
+      dataSpyList.forEach(function (dataSpyEl) {
+        bootstrap.ScrollSpy.getInstance(dataSpyEl)?.refresh();
       });
 
-      // Klik dots indicator → perpanjang waktu tampil
-      carouselHover.querySelectorAll('.carousel-indicators button').forEach(dot => {
-        dot.addEventListener('click', showControls);
-      });
-
-      // Touch support (HP) — sentuh area carousel
-      carouselHover.addEventListener('touchstart', showControls, { passive: true });
-    }
-
-    // =========================================
-    // GALLERY MODAL
-    // =========================================
-    const images = document.querySelectorAll('.project-img');
-
-    const galleryModal = new bootstrap.Modal(
-      document.getElementById('galleryModal')
-    );
-
-    const galleryImage = document.getElementById('galleryImage');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    let currentIndex = 0;
-
-    // Open modal on image click
-    images.forEach((img, index) => {
-      img.style.cursor = 'pointer';
-
-      img.addEventListener('click', () => {
-        currentIndex = index;
-        galleryImage.src = img.src;
-        galleryModal.show();
-      });
-    });
-
-    // Next image
-    nextBtn.addEventListener('click', () => {
-      currentIndex++;
-      if (currentIndex >= images.length) currentIndex = 0;
-      galleryImage.src = images[currentIndex].src;
-    });
-
-    // Prev image
-    prevBtn.addEventListener('click', () => {
-      currentIndex--;
-      if (currentIndex < 0) currentIndex = images.length - 1;
-      galleryImage.src = images[currentIndex].src;
-    });
-
-    // Keyboard support
-    document.addEventListener('keydown', (e) => {
-      if (!document.getElementById('galleryModal').classList.contains('show')) return;
-      if (e.key === 'ArrowRight') nextBtn.click();
-      if (e.key === 'ArrowLeft') prevBtn.click();
-      if (e.key === 'Escape') galleryModal.hide();
-    });
-
-    // Zoom image
-    let zoomed = false;
-
-    galleryImage.addEventListener('click', () => {
-      zoomed = !zoomed;
-      if (zoomed) {
-        galleryImage.style.transform = 'scale(1.8)';
-        galleryImage.style.cursor = 'zoom-out';
-      } else {
-        galleryImage.style.transform = 'scale(1)';
-        galleryImage.style.cursor = 'zoom-in';
-      }
-    });
-
-    function resetZoom() {
-      zoomed = false;
-      galleryImage.style.transform = 'scale(1)';
-      galleryImage.style.cursor = 'zoom-in';
-    }
-
-    nextBtn.addEventListener('click', resetZoom);
-    prevBtn.addEventListener('click', resetZoom);
-
+    }); // end DOMContentLoaded
   </script>
 
 </body>
