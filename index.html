@@ -105,6 +105,16 @@
       font-size: clamp(1rem, 4vw, 1.75rem) !important;
     }
 
+    .hero-quote {
+      max-width: 700px;
+      margin: 1.25rem auto 0;
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, .85);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .5);
+    }
+
     .about-table td {
       padding: 0.25rem 0.4rem;
       font-size: clamp(0.75rem, 2.5vw, 0.875rem);
@@ -243,6 +253,38 @@
       opacity: 1;
       pointer-events: auto;
     }
+
+
+    /* Signature card ala terminal */
+    .dev-signature {
+      background: #0d1117;
+      border-radius: .75rem;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    .dev-signature .sig-bar {
+      background: #161b22;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+    .dev-signature .sig-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dev-signature .sig-body {
+      font-size: clamp(.85rem, 2.8vw, 1.2rem);
+      line-height: 2;
+      white-space: normal;
+      word-break: break-word;
+    }
+    .sig-comment { color: #8b949e; }
+    .sig-key     { color: #ff7b72; }
+    .sig-fn      { color: #d2a8ff; }
+    .sig-str     { color: #a5d6ff; font-weight: 700; }
+    .sig-cursor  { animation: sigBlink 1s steps(1) infinite; color: #fff; }
+    @keyframes sigBlink { 50% { opacity: 0; } }
   </style>
 </head>
 
@@ -286,8 +328,14 @@
           text-shadow:0 0 10px rgba(255,255,255,0.8),
                       0 0 20px rgba(200,200,200,0.5),
                       0 0 30px rgba(255,255,255,0.2);">
-        &nbsp;
+        &nbsp;                      
       </p>
+      <!-- <p class="hero-quote">
+        Bugs don't stop me. Deadlines don't break me. AI doesn't scare me.
+      <div class="fw-bold text-white">
+        "I keep learning and evolving daily"
+      </div>
+      </p> -->
     </div>
   </section>
 
@@ -480,8 +528,9 @@
               About Me
             </h5>
 
+
             <p>
-              I am a Web Developer with hands-on internship experience and approximately four years of
+              I am a Full Stack Developer with hands-on internship experience and approximately four years of
               continuous learning and project development in web technologies. During this time, I have
               built web applications through academic projects, personal projects, and professional
               internship experience, allowing me to strengthen my practical understanding of software
@@ -1437,30 +1486,6 @@
         </div>
   </section>
 
-  <!--  WakaTime  -->
-  <section id="wakatime" class="py-5" style="background-color: #f0f4f8;">
-    <div class="container">
-
-      <div class="d-flex justify-content-center mb-5">
-        <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:420px">
-          <i class="bi bi-activity display-4 text-success mb-3 d-block"></i>
-          <h3 class="fw-bold text-uppercase mb-2">Coding Activity</h3>
-          <p class="text-muted small mb-3">My coding activity tracked by WakaTime.</p>
-          <div class="mx-auto bg-danger rounded" style="width:40px;height:4px"></div>
-        </div>
-      </div>
-
-      <div class="bg-white shadow rounded-3 p-4" style="overflow:hidden">
-        <iframe
-          src="https://wakatime.com/share/@c2143b72-7539-485e-ba68-62cf6f894bf5/d14dac7c-8eec-4507-9cc0-037ce3f83c20.svg"
-          frameborder="0" scrolling="no" style="width:130%; height:450px; border:none; display:block;
-            transform:translateX(-11%); transform-origin:left top">
-        </iframe>
-      </div>
-
-    </div>
-  </section>
-
   <!--  Courses  -->
   <section id="courses" class="py-5" style="background-color: #f0f4f8;">
 
@@ -1654,6 +1679,64 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+
+
+  <!--  Coding Activity + Signature  -->
+  <section id="wakatime" class="py-5" style="background-color: #f0f4f8;">
+    <div class="container">
+
+      <div class="d-flex justify-content-center mb-5">
+        <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:420px">
+          <i class="bi bi-activity display-4 text-success mb-3 d-block"></i>
+          <h3 class="fw-bold text-uppercase mb-2">Coding Activity</h3>
+          <p class="text-muted small mb-3">My coding activity tracked by WakaTime.</p>
+          <div class="mx-auto bg-danger rounded" style="width:40px;height:4px"></div>
+        </div>
+      </div>
+
+      <div class="bg-white shadow rounded-3 p-4" style="overflow:hidden">
+        <iframe
+          src="https://wakatime.com/share/@c2143b72-7539-485e-ba68-62cf6f894bf5/d14dac7c-8eec-4507-9cc0-037ce3f83c20.svg"
+          frameborder="0" scrolling="no" style="width:130%; height:450px; border:none; display:block;
+            transform:translateX(-11%); transform-origin:left top">
+        </iframe>
+      </div>
+
+      <!-- Personal Motto: header card -->
+      <div class="d-flex justify-content-center mt-5 mb-5">
+        <div class="bg-white shadow-sm rounded p-4 text-center w-100" style="max-width:420px">
+          <i class="bi bi-lightning-charge-fill display-4 text-warning mb-3 d-block"></i>
+          <h3 class="fw-bold text-uppercase mb-2">Personal Motto</h3>
+          <p class="text-muted small mb-3">The mindset I bring to every project.</p>
+          <div class="mx-auto bg-danger rounded" style="width:40px;height:4px"></div>
+        </div>
+      </div>
+
+      <!-- Signature card -->
+      <div class="mx-auto" style="max-width:900px">
+        <div class="dev-signature">
+          <div class="sig-bar d-flex align-items-center gap-2 px-3 py-2">
+            <span class="sig-dot" style="background:#ff5f56"></span>
+            <span class="sig-dot" style="background:#ffbd2e"></span>
+            <span class="sig-dot" style="background:#27c93f"></span>
+            <small class="ms-2 text-secondary">
+              <i class="bi bi-terminal me-1"></i>~/portfolio/signature.js
+            </small>
+          </div>
+          <div class="sig-body px-4 py-5 text-white">
+            <div class="sig-comment">// Bugs don't stop me.</div>
+            <div class="sig-comment">// Deadlines don't break me.</div>
+            <div class="sig-comment">// AI doesn't scare me.</div>
+            <div>
+              <span class="sig-key">console</span>.<span class="sig-fn">log</span>(<span class="sig-str">"I keep learning and evolving daily"</span>);<span class="sig-cursor">▌</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
